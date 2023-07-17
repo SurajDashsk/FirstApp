@@ -1,87 +1,52 @@
-//import { Button, Stack, Text } from '@chakra-ui/react'
-//import React from 'react'
 
 
-// const LoginPage = ({}) => {
-//   return (
-//     <Stack justifyContent={'center'} alignItems={'center'} className='h-screen w-screen' >
-//         <Stack width={'xl'}>
-//             <Text align={'center'}>Login Page</Text>
-//             <Button>Login</Button>
-//         </Stack>
-//     </Stack>
-//   )
-// }
-
-// export default LoginPage;
-
-
-import { Box, Text } from '@chakra-ui/react'
 import React from 'react'
 
 
+import { Stack, Box, Text, Input, Tabs, TabPanels, Button, Flex } from '@chakra-ui/react'
+import { FaChevronRight } from 'react-icons/fa';
+
 export const App = () => (
-  <Box>
+  <Stack width="100vw" height="100vh" maxWidth="100%" background="#FAFAFA" align="center" >
+    <Flex
+      direction="row"
+      width="100vw"
+      height="90px"
+      maxWidth="100%"
+      background="#FFFFFF"
+      boxShadow="0px -6px 35px 0px rgba(0, 0, 0, 0.25)"
+      paddingLeft={4}
+      className="topNavBar"
+    >
+        <img src="logo.png" className="logoImg" alt="Logo" width="50px" height="50px" />
+
+    </Flex>
+    <Box width="150px" height="50px" />
     <Box
       borderRadius="30px"
-      width="320px"
-      height="424px"
-      maxWidth="100%"
-      background="#F5F5F5"
-      boxShadow="0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-    />
-    <Text
-      fontFamily="Inter"
-      fontWeight="semibold"
-      fontSize="14px"
-      color="#000000"
+      width="556px"
+      height="fit-content"
+      background="#FFFFFF"
+      boxShadow="1px 1px 35px 0px rgba(0, 0, 0, 0.25)"
+      mx={0}
+      padding={12}
     >
-      Password
-    </Text>
-    <Text fontFamily="Inter" fontWeight="bold" fontSize="24px" color="#0F5E2F">
-      Welcome back
-    </Text>
-    <Text
-      fontFamily="Inter"
-      fontWeight="black"
-      fontSize="11px"
-      color="#000000"
-      width="32px"
-    >
-      Login
-    </Text>
-    <span className="unsupported" />
-    <Text
-      fontFamily="Inter"
-      fontWeight="semibold"
-      fontSize="14px"
-      color="#000000"
-    >
-      Email
-    </Text>
-    <span className="unsupported" />
-    <span className="unsupported" />
-    <Text
-      fontFamily="Inter"
-      fontWeight="semibold"
-      fontSize="9px"
-      color="#000000"
-    >
-      Forgot Password
-    </Text>
-    <Box borderRadius="70px" width="88px" height="42px" background="#0F5E2F" />
-    <Text
-      fontFamily="Inter"
-      fontWeight="black"
-      fontSize="15px"
-      color="#F5F5F5"
-      width="51px"
-      textAlign="center"
-    >
-      Login
-    </Text>
-  </Box>
+        <p className="welcomeBackText">Welcome Back</p>
+        <Stack width="inherit" padding={8} mt={"10"} spacing={4} align="start" justify={"center"}>
+            <Input variant='flushed' placeholder="Email" className="emailInput" width="311px" />
+            <Input variant='flushed' placeholder="Password" className="passwordInput" width="311px" />
+            
+        </Stack>
+
+        <Stack spacing={4} mt={20} align="end" justify={"end"}>
+        <p className="forgotPasswordText">Forgot Password?</p>
+        <Button mt={4} colorScheme='green' rightIcon={<FaChevronRight />}>Login</Button>
+        </Stack>
+    </Box>
+    
+  </Stack>
 )
+
 
 
 

@@ -25,3 +25,31 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.welcomeBackText {
+    color: #169E83;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 38px;
+}
+
+.topNavBar {
+    /* just bottom is rounded */
+    border-radius: 0px 0px 50px 50px;
+}
+
+.forgotPasswordText {
+    color: #169E83;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.logoImg {
+    width: 80px;
+    height: 80px;
+}

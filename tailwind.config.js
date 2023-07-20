@@ -10,6 +10,9 @@ module.exports = {
       primary: '#169E83',
       primary_hover: '#228270',
       white: '#ffffff',
+      forest_green: '#00DE16',
+      gray: '#9CA3AF',
+      light_gray: '#f5f7f7'
     },
     extend: {
       backgroundImage: {

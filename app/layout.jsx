@@ -1,13 +1,13 @@
 import { Providers } from './providers';
 import './globals.css';
-import LayoutWrapper from './components/AppLayoutWrapper';
+import AppLayoutWrapper from './components/AppLayoutWrapper';
 
 export default async function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
         <Providers>
-          <LayoutWrapper>{children}</LayoutWrapper>
+          <AppLayoutWrapper>{children}</AppLayoutWrapper>
         </Providers>
       </body>
     </html>

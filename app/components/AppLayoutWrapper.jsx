@@ -7,7 +7,7 @@ import Navbar from './navbar/Navbar';
 const AppLayoutWrapper = ({ children }) => {
   const sidebarModal = useSidebarModal();
   return (
-    <div>
+    <div className='relative'>
       <Navbar />
       <Sidebar />
       <div className={sidebarModal.isOpen ? 'ml-[15vw] p-6' : ''}>

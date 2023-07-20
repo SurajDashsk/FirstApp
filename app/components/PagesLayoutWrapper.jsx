@@ -8,7 +8,7 @@ const PagesLayoutWrapper = ({ children }) => {
   useEffect(() => {
     sidebarModal.onOpen();
   }, []);
-  return <div className='h-[75vh] md:h-[76vh] xl:h-[81vh]'>{children}</div>;
+  return <div>{children}</div>;
 };
 
 export default PagesLayoutWrapper;

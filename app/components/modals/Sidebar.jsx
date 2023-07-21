@@ -1,12 +1,13 @@
 'use client';
 
 import useSidebarModal from '@/app/hooks/useSidebarModal';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import React from 'react';
 
 const Sidebar = () => {
   const sidebarModal = useSidebarModal();
   const router = useRouter();
+  const pathname = usePathname();
 
   return (
     sidebarModal.isOpen && (
@@ -15,25 +16,39 @@ const Sidebar = () => {
           <div className='flex flex-col gap-4'>
             <h1 className='md:text-xl lg:text-2xl mb-2 md:mb-5'>Portal</h1>
             <h1
-              className='md:text-lg lg:text-2xl text-primary cursor-pointer'
+              className={`md:text-lg lg:text-2xl text-primary cursor-pointer ${pathname.includes('home') ? 'font-extrabold' : ''}`}
               onClick={() => router.push('/')}
             >
               Home
             </h1>
             <h1
-              className='md:text-lg lg:text-2xl text-primary cursor-pointer'
+              className={`md:text-lg lg:text-2xl text-primary cursor-pointer ${
+                pathname.includes('users') ? 'font-extrabold' : ''
+              }`}
               onClick={() => router.push('/users')}
             >
               Users
             </h1>
-            <h1 className='md:text-lg lg:text-2xl text-primary cursor-pointer' onClick={() => router.push('/challenges')}>
+            <h1
+              className={`md:text-lg lg:text-2xl text-primary cursor-pointer ${
+                pathname.includes('challenges') ? 'font-extrabold' : ''
+              }`}
+              onClick={() => router.push('/challenges')}
+            >
               Challenges
             </h1>
-            <h1 className='md:text-lg lg:text-2xl text-primary cursor-pointer' onClick={() => router.push('/finances')}>
+            <h1
+              className={`md:text-lg lg:text-2xl text-primary cursor-pointer ${
+                pathname.includes('finances') ? 'font-extrabold' : ''
+              }`}
+              onClick={() => router.push('/finances')}
+            >
               Finances
             </h1>
             <h1
-              className='md:text-lg lg:text-2xl text-primary cursor-pointer'
+              className={`md:text-lg lg:text-2xl text-primary cursor-pointer ${
+                pathname.includes('statistics') ? 'font-extrabold' : ''
+              } `}
               onClick={() => router.push('/statistics')}
             >
               Statistics

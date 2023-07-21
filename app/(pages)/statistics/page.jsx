@@ -215,10 +215,10 @@ const Statistics = () => {
       </ContainerBox>
 
       {/* User Trajectory */}
-      <ContainerBox className='h-[350px] col-span-2'>
+      <ContainerBox className='h-[900px] lg:h-[350px] col-span-2'>
         <h1 className='text-lg font-bold'>User Trajectory</h1>
 
-        <div className='flex mt-4'>
+        <div className='flex flex-col lg:flex-row mt-4'>
           <MyBarChart
             data={usageData}
             barSize={7}

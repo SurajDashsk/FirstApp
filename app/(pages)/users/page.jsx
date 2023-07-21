@@ -1,6 +1,16 @@
 import ContainerBox from '@/app/components/ContainerBox';
 import LinearChart from '@/app/components/charts/LinearChart';
+import Image from 'next/image';
 import React from 'react';
+
+import Button from '@/app/components/Button';
+
+import defaultChallengeImage from '@/public/images/default-challenge.svg';
+import Badge01 from '@/public/images/badge01.svg';
+import Badge02 from '@/public/images/badge02.svg';
+import JuneVargasImage from '@/public/images/profile-images/June-Vargas.svg';
+import DarleneRobertsonImage from '@/public/images/profile-images/Darlene-Robertson.svg';
+import DarellStewardImage from '@/public/images/profile-images/Darell-Steward.svg';
 
 const FailiureRateData = [
   {
@@ -53,7 +63,75 @@ const Users = () => {
       </ContainerBox>
 
       {/* Influencer Request */}
-      <ContainerBox className="">Influencer Request</ContainerBox>
+      <ContainerBox>
+        <h1 className='text-xl font-semibold'>Influencer Requests</h1>
+
+        <div className='flex flex-col gap-4 mt-6 justify-center'>
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Influencer</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Influencer</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Influencer</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+        </div>
+
+        <h1 className='text-xl font-semibold mt-5'>Influencers</h1>
+
+        <div className='flex flex-col gap-4 mt-6 justify-center'>
+          <div className='flex justify-between items-center bg-light_gray px-10 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={Badge01} />
+              <Image src={JuneVargasImage} />
+              <p>June Vegas</p>
+            </div>
+            <p>
+              <span className='font-semibold'>120</span> Users
+            </p>
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-10 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={Badge02} />
+              <Image src={DarleneRobertsonImage} />
+              <p>Darlene Robertson</p>
+            </div>
+            <p>
+              <span className='font-semibold'>120</span> Users
+            </p>
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-10 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={Badge02} className='opacity-0' />
+              <Image src={DarellStewardImage} />
+              <p>Darell Steward</p>
+            </div>
+          </div>
+        </div>
+      </ContainerBox>
 
       {/* Retention */}
       <ContainerBox>

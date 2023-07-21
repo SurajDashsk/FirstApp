@@ -9,10 +9,12 @@ module.exports = {
     colors: {
       primary: '#169E83',
       primary_hover: '#228270',
-      white: '#ffffff',
+      white: '#FFFFFF',
       forest_green: '#00DE16',
+      green: '#67D8B9',
       gray: '#9CA3AF',
-      light_gray: '#f5f7f7'
+      light_gray: '#f5f7f7',
+      background: '#FAFAFA'
     },
     extend: {
       backgroundImage: {

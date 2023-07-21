@@ -44,7 +44,7 @@ const Users = () => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-6 h-full'>
       {/* User Origin */}
-      <ContainerBox>User Origin</ContainerBox>
+      <ContainerBox className='h-[50%]'>User Origin</ContainerBox>
 
       {/* Failiure Rate */}
       <ContainerBox>
@@ -53,7 +53,7 @@ const Users = () => {
       </ContainerBox>
 
       {/* Influencer Request */}
-      <ContainerBox>Influencer Request</ContainerBox>
+      <ContainerBox className="">Influencer Request</ContainerBox>
 
       {/* Retention */}
       <ContainerBox>

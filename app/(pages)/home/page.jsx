@@ -43,23 +43,40 @@ const Home = () => {
         <h1 className='text-lg font-bold'>Upcoming Challenges</h1>
 
         <div className='flex flex-col gap-4 mt-6 justify-center'>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-            <Image src={defaultChallengeImage} />
-            <p>Challenge</p>
-            <Button title='View' className='w-[25%]' />
-          </div>
-          <div className='flex justify-between items-center  bg-light_gray px-5 py-1 rounded-xl'>
-            <Image src={defaultChallengeImage} />
-            <p>Challenge</p>
-            <Button title='View' className='w-[25%]' />
-          </div>
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-            <Image src={defaultChallengeImage} />
-            <p>Challenge</p>
-            <Button title='View' className='w-[25%]' />
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+              </div>
+            </div>
+            <Button title='View' className='w-32 h-7' />
           </div>
-          <div className='self-center w-[50%]'>
-            <Button title='See All' />
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-32 h-7' />
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-32 h-7' />
+          </div>
+
+          <div className='self-center'>
+            <Button title='See All' className='w-64 h-9' />
           </div>
         </div>
       </ContainerBox>
@@ -100,7 +117,7 @@ const Home = () => {
           />
           <select
             id='tbd'
-            class='bg-light_gray rounded-lg focus:outline-gray px-4 py-2'
+            className='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
             <option selected>Access</option>
             <option value='US'>Other 1</option>

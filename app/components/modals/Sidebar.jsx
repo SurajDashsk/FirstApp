@@ -26,13 +26,16 @@ const Sidebar = () => {
             >
               Users
             </h1>
-            <h1 className='md:text-lg lg:text-2xl text-primary cursor-pointer'>
+            <h1 className='md:text-lg lg:text-2xl text-primary cursor-pointer' onClick={() => router.push('/challenges')}>
               Challenges
             </h1>
             <h1 className='md:text-lg lg:text-2xl text-primary cursor-pointer'>
               Finances
             </h1>
-            <h1 className='md:text-lg lg:text-2xl text-primary cursor-pointer'>
+            <h1
+              className='md:text-lg lg:text-2xl text-primary cursor-pointer'
+              onClick={() => router.push('/statistics')}
+            >
               Statistics
             </h1>
           </div>

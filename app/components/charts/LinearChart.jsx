@@ -1,26 +1,15 @@
 'use client';
 
 import React from 'react';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  AreaChart,
-  Area,
-  Label,
-} from 'recharts';
+import { XAxis, Tooltip, AreaChart, Area } from 'recharts';
 
-const LinearChart = ({ heading, data }) => {
+const LinearChart = ({ heading, data, height = 250, width = 550 }) => {
   return (
     <div className='p-4'>
       <p className='font-bold'>{heading}</p>
       <AreaChart
-        width={550}
-        height={250}
+        width={width}
+        height={height}
         data={data}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
@@ -30,9 +19,9 @@ const LinearChart = ({ heading, data }) => {
             <stop offset='95%' stopColor='#82ca9d' stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey='name' />
+        <XAxis dataKey='name' axisLine={false} tickLine={false} />
         <Tooltip />
-        
+
         <Area
           type='monotone'
           dataKey='pv'

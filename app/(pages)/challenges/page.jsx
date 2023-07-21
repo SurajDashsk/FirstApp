@@ -5,71 +5,112 @@ import React from 'react';
 import defaultChallengeImage from '@/public/images/default-challenge.svg';
 import Image from 'next/image';
 
-
 const Home = () => {
-    return (
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 h-full'>
-        {/*Upcoming challenge*/}
-        <ContainerBox className= 'h-[640px]'>
+  return (
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-6 h-full'>
+      {/*Upcoming challenge*/}
+      <ContainerBox className='h-[640px]'>
         <h1 className='text-lg font-bold'>Upcoming Challenges</h1>
 
         <div className='flex flex-col gap-4 mt-6 justify-center'>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-          <Image src={defaultChallengeImage} />
-          <p>Challenge</p>
-          <Button title='View' className='w-[25%]' />            
-          </div>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-          <Image src={defaultChallengeImage} />
-          <p>Challenge</p>
-          <Button title='View' className='w-[25%]' />            
-          </div>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-          <Image src={defaultChallengeImage} />
-          <p>Challenge</p>
-          <Button title='View' className='w-[25%]' />            
-          </div>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-          <Image src={defaultChallengeImage} />
-          <p>Challenge</p>
-          <Button title='View' className='w-[25%]' />            
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
           </div>
 
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
           </div>
-          
 
-          <h1 className='text-lg font-bold'>Previous Challenges</h1>
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+        </div>
+
+        <h1 className='text-lg font-bold mt-5'>Previous Challenges</h1>
 
         <div className='flex flex-col gap-4 mt-6 justify-center'>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-          <Image src={defaultChallengeImage} />
-          <p>Challenge</p>
-          <Button title='View' className='w-[25%]' />            
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
           </div>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-          <Image src={defaultChallengeImage} />
-          <p>Challenge</p>
-          <Button title='View' className='w-[25%]' />            
-          </div>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-          <Image src={defaultChallengeImage} />
-          <p>Challenge</p>
-          <Button title='View' className='w-[25%]' />            
-          </div>
-          <div className='flex justify-between items-center bg-light_gray px-7 py-1 rounded-xl'>
-          <Image src={defaultChallengeImage} />
-          <p>Challenge</p>
-          <Button title='View' className='w-[25%]' />            
-          </div>
-          </div>
-        </ContainerBox>
 
-        {/*Create New Challenge*/}
-        <ContainerBox className= 'h-[640px]'>
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+        </div>
+      </ContainerBox>
+
+      {/*Create New Challenge*/}
+      <ContainerBox className='h-[640px]'>
         <h1 className='text-lg font-bold'>Create New Challenges</h1>
 
-        <div className='flex flex-col gap-4 mt-6'>
-        <input
+        <div className='flex flex-col gap-4 mt-6 justify-between'>
+          <input
             placeholder='Challenge Name'
             className='bg-light_gray px-4 py-2 rounded-lg focus:outline-gray'
             type='name'
@@ -95,7 +136,7 @@ const Home = () => {
           />
           <select
             id='tbd'
-            class='bg-light_gray rounded-lg focus:outline-gray px-4 py-2'
+            className='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
             <option selected>Challenge Type</option>
             <option value='US'>Other 1</option>
@@ -105,7 +146,7 @@ const Home = () => {
           </select>
           <select
             id='tbd'
-            class='bg-light_gray rounded-lg focus:outline-gray px-4 py-2'
+            class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
             <option selected>Occurence</option>
             <option value='US'>Other 1</option>
@@ -115,7 +156,7 @@ const Home = () => {
           </select>
           <select
             id='tbd'
-            class='bg-light_gray rounded-lg focus:outline-gray px-4 py-2'
+            class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
             <option selected>Start Date</option>
             <option value='US'>Other 1</option>
@@ -125,7 +166,7 @@ const Home = () => {
           </select>
           <select
             id='tbd'
-            class='bg-light_gray rounded-lg focus:outline-gray px-4 py-2'
+            class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
             <option selected>Difficulty</option>
             <option value='US'>Other 1</option>
@@ -133,22 +174,11 @@ const Home = () => {
             <option value='FR'>Other 3</option>
             <option value='DE'>Other 4</option>
           </select>
-          <Button title='Submit' className='w-[50%] self-center' />
+          <Button title='Submit' className='w-[50%] self-center mt-16'/>
         </div>
-
-        </ContainerBox>
-
-        </div>
+      </ContainerBox>
+    </div>
   );
 };
 
 export default Home;
-    
-
-
-
-
-
-
-
-      

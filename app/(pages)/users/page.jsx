@@ -69,7 +69,7 @@ const Users = () => {
         <div className='flex flex-col gap-4 mt-6 justify-center'>
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge'/>
               <div className='flex flex-col'>
                 <p className='text-sm'>Influencer</p>
               </div>
@@ -79,7 +79,7 @@ const Users = () => {
 
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge' />
               <div className='flex flex-col'>
                 <p className='text-sm'>Influencer</p>
               </div>
@@ -89,7 +89,7 @@ const Users = () => {
 
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge'/>
               <div className='flex flex-col'>
                 <p className='text-sm'>Influencer</p>
               </div>
@@ -103,8 +103,8 @@ const Users = () => {
         <div className='flex flex-col gap-4 mt-6 justify-center'>
           <div className='flex justify-between items-center bg-light_gray px-10 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={Badge01} />
-              <Image src={JuneVargasImage} />
+              <Image src={Badge01} alt='badge'/>
+              <Image src={JuneVargasImage} alt='profile-image'/>
               <p>June Vegas</p>
             </div>
             <p>
@@ -114,8 +114,8 @@ const Users = () => {
 
           <div className='flex justify-between items-center bg-light_gray px-10 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={Badge02} />
-              <Image src={DarleneRobertsonImage} />
+              <Image src={Badge02} alt='badge'/>
+              <Image src={DarleneRobertsonImage} alt='profile-image'/>
               <p>Darlene Robertson</p>
             </div>
             <p>
@@ -125,8 +125,8 @@ const Users = () => {
 
           <div className='flex justify-between items-center bg-light_gray px-10 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={Badge02} className='opacity-0' />
-              <Image src={DarellStewardImage} />
+              <Image src={Badge02} className='opacity-0' alt='badge'/>
+              <Image src={DarellStewardImage} alt='profile-image'/>
               <p>Darell Steward</p>
             </div>
           </div>

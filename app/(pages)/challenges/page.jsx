@@ -15,7 +15,7 @@ const Home = () => {
         <div className='flex flex-col gap-4 mt-6 justify-center'>
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge' />
               <div className='flex flex-col'>
                 <p className='text-sm'>Challenge</p>
               </div>
@@ -25,18 +25,7 @@ const Home = () => {
 
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
-              <div className='flex flex-col'>
-                <p className='text-sm'>Challenge</p>
-                <p className='text-xs text-gray'>15 Members</p>
-              </div>
-            </div>
-            <Button title='View' className='w-[25%] h-7' />
-          </div>
-
-          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-            <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge' />
               <div className='flex flex-col'>
                 <p className='text-sm'>Challenge</p>
                 <p className='text-xs text-gray'>15 Members</p>
@@ -47,7 +36,18 @@ const Home = () => {
 
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge' />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} alt='challenge' />
               <div className='flex flex-col'>
                 <p className='text-sm'>Challenge</p>
                 <p className='text-xs text-gray'>15 Members</p>
@@ -62,7 +62,7 @@ const Home = () => {
         <div className='flex flex-col gap-4 mt-6 justify-center'>
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge' />
               <div className='flex flex-col'>
                 <p className='text-sm'>Challenge</p>
               </div>
@@ -72,18 +72,7 @@ const Home = () => {
 
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
-              <div className='flex flex-col'>
-                <p className='text-sm'>Challenge</p>
-                <p className='text-xs text-gray'>15 Members</p>
-              </div>
-            </div>
-            <Button title='View' className='w-[25%] h-7' />
-          </div>
-
-          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-            <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge' />
               <div className='flex flex-col'>
                 <p className='text-sm'>Challenge</p>
                 <p className='text-xs text-gray'>15 Members</p>
@@ -94,7 +83,18 @@ const Home = () => {
 
           <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
             <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} />
+              <Image src={defaultChallengeImage} alt='challenge' />
+              <div className='flex flex-col'>
+                <p className='text-sm'>Challenge</p>
+                <p className='text-xs text-gray'>15 Members</p>
+              </div>
+            </div>
+            <Button title='View' className='w-[25%] h-7' />
+          </div>
+
+          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+            <div className='flex gap-6 justify-center items-center'>
+              <Image src={defaultChallengeImage} alt='challenge' />
               <div className='flex flex-col'>
                 <p className='text-sm'>Challenge</p>
                 <p className='text-xs text-gray'>15 Members</p>
@@ -138,7 +138,7 @@ const Home = () => {
             id='tbd'
             className='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option selected>Challenge Type</option>
+            <option defaultValue="Challenge Type" >Challenge Type</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>
@@ -148,7 +148,7 @@ const Home = () => {
             id='tbd'
             class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option selected>Occurence</option>
+            <option defaultValue="Occurence">Occurence</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>
@@ -158,7 +158,7 @@ const Home = () => {
             id='tbd'
             class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option selected>Start Date</option>
+            <option defaultValue="Start Date" >Start Date</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>
@@ -168,7 +168,7 @@ const Home = () => {
             id='tbd'
             class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option selected>Difficulty</option>
+            <option defaultValue="Difficulty" >Difficulty</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>

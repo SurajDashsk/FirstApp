@@ -1,3 +1,4 @@
+'use client';
 import Button from '@/app/components/Button';
 import ContainerBox from '@/app/components/ContainerBox';
 import React from 'react';
@@ -138,7 +139,7 @@ const Home = () => {
             id='tbd'
             className='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option defaultValue="Challenge Type" >Challenge Type</option>
+            <option defaultValue='Challenge Type'>Challenge Type</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>
@@ -148,7 +149,7 @@ const Home = () => {
             id='tbd'
             class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option defaultValue="Occurence">Occurence</option>
+            <option defaultValue='Occurence'>Occurence</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>
@@ -158,7 +159,7 @@ const Home = () => {
             id='tbd'
             class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option defaultValue="Start Date" >Start Date</option>
+            <option defaultValue='Start Date'>Start Date</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>
@@ -168,13 +169,13 @@ const Home = () => {
             id='tbd'
             class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option defaultValue="Difficulty" >Difficulty</option>
+            <option defaultValue='Difficulty'>Difficulty</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>
             <option value='DE'>Other 4</option>
           </select>
-          <Button title='Submit' className='w-[50%] self-center mt-16'/>
+          <Button title='Submit' className='w-[50%] self-center mt-16' />
         </div>
       </ContainerBox>
     </div>

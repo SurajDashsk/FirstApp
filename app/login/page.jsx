@@ -1,26 +1,51 @@
 'use client';
-import React, { useEffect } from 'react';
-import {
-  Stack,
-  Box,
-  Text,
-  Input,
-  Tabs,
-  TabPanels,
-  Button,
-  Flex,
-} from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { Stack, Box, Input, Button } from '@chakra-ui/react';
 import { FaChevronRight } from 'react-icons/fa';
 import useSidebarModal from '../hooks/useSidebarModal';
 import { useRouter } from 'next/navigation';
+import firebase_app from '../firebase/config';
+import { getAuth, signInWithEmailAndPassword, get } from 'firebase/auth';
+import { toast } from 'react-hot-toast';
+import getUserByEmail from '../firebase/getUserByEmail';
 
 const Login = () => {
   const sidebarModal = useSidebarModal();
   const router = useRouter();
+  const auth = getAuth(firebase_app);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     sidebarModal.onClose();
   }, []);
+
+  const signIn = async () => {
+    try {
+      setIsLoading(true);
+      const response = await signInWithEmailAndPassword(auth, email, password);
+
+      if (response) {
+        const { user } = await getUserByEmail('User', email);
+
+        if (user) {
+          toast.success('Logged in Successfully');
+          router.push('/home');
+        } else {
+          toast.error('Not Authorized.');
+        }
+      }
+
+      setIsLoading(false);
+    } catch (e) {
+      toast.error('Log in Failed');
+      setIsLoading(false);
+      console.log('error is', e);
+    }
+  };
+
   return (
     <Stack
       width='100vw'
@@ -50,15 +75,27 @@ const Login = () => {
           justify={'center'}
         >
           <Input
+            id='email'
+            type='email'
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             variant='flushed'
             placeholder='Email'
             className='emailInput'
+            disabled={isLoading}
             width='311px'
           />
           <Input
+            id='password'
+            type='password'
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             variant='flushed'
             placeholder='Password'
             className='passwordInput'
+            disabled={isLoading}
             width='311px'
           />
         </Stack>
@@ -69,7 +106,7 @@ const Login = () => {
             mt={4}
             className='bg-primary text-white hover:bg-primary_hover'
             rightIcon={<FaChevronRight />}
-            onClick={() => router.push('/home')}
+            onClick={signIn}
           >
             Login
           </Button>

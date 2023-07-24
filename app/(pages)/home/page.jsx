@@ -119,7 +119,7 @@ const Home = () => {
             id='tbd'
             className='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
           >
-            <option defaultValue="Access" >Access</option>
+            <option defaultValue='Access'>Access</option>
             <option value='US'>Other 1</option>
             <option value='CA'>Other 2</option>
             <option value='FR'>Other 3</option>

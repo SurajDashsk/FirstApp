@@ -5,7 +5,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import useSidebarModal from '../hooks/useSidebarModal';
 import { useRouter } from 'next/navigation';
 import firebase_app from '../firebase/config';
-import { getAuth, signInWithEmailAndPassword, get } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 import getUserByEmail from '../firebase/getUserByEmail';
 

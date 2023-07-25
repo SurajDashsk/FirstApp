@@ -6,6 +6,7 @@ import defaultChallengeImage from '@/public/images/default-challenge.svg';
 import Image from 'next/image';
 import MyBarChart from '@/app/components/charts/MyBarChart';
 import LinearChart from '@/app/components/charts/LinearChart';
+import RouteGuard from '@/app/components/route-guard';
 
 const StatisticsData = [
   {
@@ -125,118 +126,120 @@ const UserPerAverageData = [
 
 const Statistics = () => {
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 h-full'>
-      {/* Page Statistics */}
-      <ContainerBox className='h-[320px] col-span-2'>
-        <h1 className='text-lg font-bold mb-4'>Page Statistics</h1>
+    <RouteGuard>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 h-full'>
+        {/* Page Statistics */}
+        <ContainerBox className='h-[320px] col-span-2'>
+          <h1 className='text-lg font-bold mb-4'>Page Statistics</h1>
 
-        <MyBarChart data={StatisticsData} barSize={25} />
-      </ContainerBox>
+          <MyBarChart data={StatisticsData} barSize={25} />
+        </ContainerBox>
 
-      {/* Usage */}
-      <ContainerBox className='h-[350px]'>
-        <h1 className='text-lg font-bold'>Usage</h1>
+        {/* Usage */}
+        <ContainerBox className='h-[350px]'>
+          <h1 className='text-lg font-bold'>Usage</h1>
 
-        <MyBarChart
-          data={usageData}
-          barSize={15}
-          headingLeft={15}
-          headingRight='Time in App'
-          span='min'
-        />
-      </ContainerBox>
-
-      {/* Target Customer */}
-      <ContainerBox className='h-[350px]'>
-        <h1 className='text-lg font-bold'>Target Customer</h1>
-
-        <div className='flex flex-col gap-4 mt-6'></div>
-      </ContainerBox>
-
-      {/* User Challenges */}
-      <ContainerBox className='h-[350px]'>
-        <h1 className='text-lg font-bold'>User Challenges</h1>
-
-        <LinearChart
-          heading='Per User Average'
-          data={UserPerAverageData}
-          height={250}
-        />
-      </ContainerBox>
-
-      {/* Challenges Performance*/}
-      <ContainerBox className='h-[350px]'>
-        <h1 className='text-lg font-bold'>Challenges Performance</h1>
-
-        <div className='flex flex-col gap-4 mt-6 justify-center'>
-          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-            <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} alt='challenge'/>
-              <div className='flex flex-col'>
-                <p className='text-sm'>Challenge</p>
-              </div>
-            </div>
-            <Button title='View' className='w-32 h-7' />
-          </div>
-
-          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-            <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} alt='challenge'/>
-              <div className='flex flex-col'>
-                <p className='text-sm'>Challenge</p>
-                <p className='text-xs text-gray'>15 Members</p>
-              </div>
-            </div>
-            <Button title='View' className='w-32 h-7' />
-          </div>
-
-          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-            <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} alt='challenge' />
-              <div className='flex flex-col'>
-                <p className='text-sm'>Challenge</p>
-                <p className='text-xs text-gray'>15 Members</p>
-              </div>
-            </div>
-            <Button title='View' className='w-[25%] h-7' />
-          </div>
-
-          <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-            <div className='flex gap-6 justify-center items-center'>
-              <Image src={defaultChallengeImage} alt='challenge'/>
-              <div className='flex flex-col'>
-                <p className='text-sm'>Challenge</p>
-                <p className='text-xs text-gray'>15 Members</p>
-              </div>
-            </div>
-            <Button title='View' className='w-[25%] h-7' />
-          </div>
-        </div>
-      </ContainerBox>
-
-      {/* User Trajectory */}
-      <ContainerBox className='h-[900px] lg:h-[350px] col-span-2'>
-        <h1 className='text-lg font-bold'>User Trajectory</h1>
-
-        <div className='flex flex-col lg:flex-row mt-4'>
           <MyBarChart
             data={usageData}
-            barSize={7}
-            headingLeft='8:02'
-            headingRight='Challenge Log Time'
-            span='AM'
-          />
-          <MyBarChart
-            data={usageData}
-            barSize={7}
+            barSize={15}
             headingLeft={15}
             headingRight='Time in App'
             span='min'
           />
-          <LinearChart data={UserPerAverageData} height={200} width={400} />
-        </div>
-      </ContainerBox>
-    </div>
+        </ContainerBox>
+
+        {/* Target Customer */}
+        <ContainerBox className='h-[350px]'>
+          <h1 className='text-lg font-bold'>Target Customer</h1>
+
+          <div className='flex flex-col gap-4 mt-6'></div>
+        </ContainerBox>
+
+        {/* User Challenges */}
+        <ContainerBox className='h-[350px]'>
+          <h1 className='text-lg font-bold'>User Challenges</h1>
+
+          <LinearChart
+            heading='Per User Average'
+            data={UserPerAverageData}
+            height={250}
+          />
+        </ContainerBox>
+
+        {/* Challenges Performance*/}
+        <ContainerBox className='h-[350px]'>
+          <h1 className='text-lg font-bold'>Challenges Performance</h1>
+
+          <div className='flex flex-col gap-4 mt-6 justify-center'>
+            <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+              <div className='flex gap-6 justify-center items-center'>
+                <Image src={defaultChallengeImage} alt='challenge' />
+                <div className='flex flex-col'>
+                  <p className='text-sm'>Challenge</p>
+                </div>
+              </div>
+              <Button title='View' className='w-32 h-7' />
+            </div>
+
+            <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+              <div className='flex gap-6 justify-center items-center'>
+                <Image src={defaultChallengeImage} alt='challenge' />
+                <div className='flex flex-col'>
+                  <p className='text-sm'>Challenge</p>
+                  <p className='text-xs text-gray'>15 Members</p>
+                </div>
+              </div>
+              <Button title='View' className='w-32 h-7' />
+            </div>
+
+            <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+              <div className='flex gap-6 justify-center items-center'>
+                <Image src={defaultChallengeImage} alt='challenge' />
+                <div className='flex flex-col'>
+                  <p className='text-sm'>Challenge</p>
+                  <p className='text-xs text-gray'>15 Members</p>
+                </div>
+              </div>
+              <Button title='View' className='w-[25%] h-7' />
+            </div>
+
+            <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
+              <div className='flex gap-6 justify-center items-center'>
+                <Image src={defaultChallengeImage} alt='challenge' />
+                <div className='flex flex-col'>
+                  <p className='text-sm'>Challenge</p>
+                  <p className='text-xs text-gray'>15 Members</p>
+                </div>
+              </div>
+              <Button title='View' className='w-[25%] h-7' />
+            </div>
+          </div>
+        </ContainerBox>
+
+        {/* User Trajectory */}
+        <ContainerBox className='h-[900px] lg:h-[350px] col-span-2'>
+          <h1 className='text-lg font-bold'>User Trajectory</h1>
+
+          <div className='flex flex-col lg:flex-row mt-4'>
+            <MyBarChart
+              data={usageData}
+              barSize={7}
+              headingLeft='8:02'
+              headingRight='Challenge Log Time'
+              span='AM'
+            />
+            <MyBarChart
+              data={usageData}
+              barSize={7}
+              headingLeft={15}
+              headingRight='Time in App'
+              span='min'
+            />
+            <LinearChart data={UserPerAverageData} height={200} width={400} />
+          </div>
+        </ContainerBox>
+      </div>
+    </RouteGuard>
   );
 };
 

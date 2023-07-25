@@ -24,17 +24,16 @@ export default async function getUserByEmail(collectionName, email) {
 
   try {
     const docsSnap = await getDocs(q);
-    console.log(docsSnap);
     result = docsSnap?.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
 
     if (result.length) {
-      console.log(result);
       user = result[0];
     }
   } catch (e) {
+    console.log(error);
     error = e;
   }
 

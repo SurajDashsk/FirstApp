@@ -2,11 +2,12 @@
 import Button from '@/app/components/Button';
 import ContainerBox from '@/app/components/ContainerBox';
 
-
 import defaultChallengeImage from '@/public/images/default-challenge.svg';
 import Image from 'next/image';
 import RouteGuard from '@/app/components/route-guard';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import addData from '@/app/firebase/addData';
 
 const Home = () => {
   const [challengeName, setChallengeName] = useState('');
@@ -19,30 +20,47 @@ const Home = () => {
   const [difficulty, setDifficulty] = useState('');
   const [isLoading, setIsLoading] = useState();
 
-// submit button click
-const createChallenge = async () => {
-  const data = {
-    Challenge_ID: challengeName,
-    Check_ins: checkIns,
-    Daily_Buy_in:dayBuyIn,
-    Duration:duration,
-    Challenege_Type:challengeType,
-    Occurence:occurence,
-    Start_Day:startDate,
-    Difficulty:difficulty,
-  }
-  try {
-    setIsLoading(true);
-    const response =  await addData('Challenge', 'crypto.randomUUID()', data );
-   }catch (e){
-    toast.error('Submit Failed');
+  // submit button click
+  const createChallenge = async () => {
+    try {
+      const data = {
+        Challenge_ID: challengeName,
+        Check_ins: checkIns,
+        Daily_Buy_in: dayBuyIn,
+        Duration: duration,
+        Challenge_Type: challengeType,
+        Occurence: occurence,
+        Start_Day: startDate,
+        Difficulty: difficulty,
+      };
+      console.log(data);
+      setIsLoading(true);
+      const { error } = await addData('Challenge', crypto.randomUUID(), data);
+
+      if (error) {
+        toast.error('Failed');
+      } else {
+        toast.success('Challenge Added');
+        resetAllStates();
+      }
+      setIsLoading(false);
+    } catch (e) {
+      toast.error('Failed');
       setIsLoading(false);
       console.log('error is', e);
-   }
-  
+    }
+  };
 
- // function starts here
- 
+  const resetAllStates = () => {
+    setChallengeName('');
+    setCheckIns('');
+    setDayBuyIn('');
+    setDuration('');
+    setChallengeType('');
+    setOccurence('');
+    setStartDate('');
+    setDifficulty('');
+  };
 
   return (
     <RouteGuard>
@@ -221,17 +239,16 @@ const createChallenge = async () => {
               <option value='FR'>Other 3</option>
               <option value='DE'>Other 4</option>
             </select>
-            <Button title='Submit' className='w-[50%] self-center mt-16' 
-            disabled={isLoading}
-            onClick={createChallenge}
+            <Button
+              title='Submit'
+              className='w-[50%] self-center mt-16'
+              disabled={isLoading}
+              onClick={createChallenge}
             />
-
           </div>
         </ContainerBox>
       </div>
     </RouteGuard>
-
   );
- };
 };
 export default Home;

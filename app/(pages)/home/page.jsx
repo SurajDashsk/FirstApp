@@ -10,11 +10,40 @@ import firebase_app from '@/app/firebase/config';
 import { getAuth } from 'firebase/auth';
 import getUserByEmail from '@/app/firebase/getUserByEmail';
 import RouteGuard from '@/app/components/route-guard';
+import fetchDataFireStore from '@/app/firebase/getData';
+import moment from 'moment';
 
 const Home = () => {
   const auth = getAuth(firebase_app);
   const [userState, loading] = useAuthState(auth);
   const [userData, setUserData] = useState();
+  const [upcomingChallenges, setUpcomingChallenges] = useState([]);
+
+  // Later : Query the database and get only the upcoming challenges and also sort them
+  const splitChallenges = (challenges) => {
+    let upcomingChallenges = [];
+    let currentDate = moment().format('MM/DD/YYYY');
+
+    challenges.forEach((challenge) => {
+      if (moment(challenge.Start_Date) > moment(currentDate)) {
+        if (upcomingChallenges.length === 3) return;
+        upcomingChallenges.push(challenge);
+      }
+    });
+
+    setUpcomingChallenges(upcomingChallenges);
+  };
+
+  const getAllChallenges = async () => {
+    const { newDocs } = await fetchDataFireStore('Challenge');
+    if (newDocs.length) {
+      splitChallenges(newDocs);
+    }
+  };
+
+  useEffect(() => {
+    getAllChallenges();
+  }, []);
 
   const getUserData = async () => {
     const { user } = await getUserByEmail('User', userState?.email);
@@ -64,38 +93,22 @@ const Home = () => {
           <h1 className='text-lg font-bold'>Upcoming Challenges</h1>
 
           <div className='flex flex-col gap-4 mt-6 justify-center'>
-            <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-              <div className='flex gap-6 justify-center items-center'>
-                <Image src={defaultChallengeImage} alt='challenge' />
-                <div className='flex flex-col'>
-                  <p className='text-sm'>Challenge</p>
+            {upcomingChallenges &&
+              upcomingChallenges.map((challenge) => (
+                <div
+                  className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'
+                  key={challenge.id}
+                >
+                  <div className='flex gap-6 justify-center items-center'>
+                    <Image src={defaultChallengeImage} alt='challenge' />
+                    <div className='flex flex-col'>
+                      <p className='text-sm'>{challenge.Challenge_ID}</p>
+                      <p className='text-xs text-gray'>15 Members</p>
+                    </div>
+                  </div>
+                  <Button title='View' className='w-[25%] h-7' />
                 </div>
-              </div>
-              <Button title='View' className='w-32 h-7' />
-            </div>
-
-            <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-              <div className='flex gap-6 justify-center items-center'>
-                <Image src={defaultChallengeImage} alt='challenge' />
-                <div className='flex flex-col'>
-                  <p className='text-sm'>Challenge</p>
-                  <p className='text-xs text-gray'>15 Members</p>
-                </div>
-              </div>
-              <Button title='View' className='w-32 h-7' />
-            </div>
-
-            <div className='flex justify-between items-center bg-light_gray px-5 py-1 rounded-xl'>
-              <div className='flex gap-6 justify-center items-center'>
-                <Image src={defaultChallengeImage} alt='challenge' />
-                <div className='flex flex-col'>
-                  <p className='text-sm'>Challenge</p>
-                  <p className='text-xs text-gray'>15 Members</p>
-                </div>
-              </div>
-              <Button title='View' className='w-32 h-7' />
-            </div>
-
+              ))}
             <div className='self-center'>
               <Button title='See All' className='w-64 h-9' />
             </div>

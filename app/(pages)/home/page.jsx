@@ -12,37 +12,23 @@ import getUserByEmail from '@/app/firebase/getUserByEmail';
 import RouteGuard from '@/app/components/route-guard';
 import fetchDataFireStore from '@/app/firebase/getData';
 import moment from 'moment';
+import getUpcomingChallenges from '@/app/firebase/getUpcomingChallenges';
+import { useRouter } from 'next/navigation';
 
 const Home = () => {
+  const router = useRouter();
   const auth = getAuth(firebase_app);
   const [userState, loading] = useAuthState(auth);
   const [userData, setUserData] = useState();
   const [upcomingChallenges, setUpcomingChallenges] = useState([]);
 
-  // Later : Query the database and get only the upcoming challenges and also sort them
-  const splitChallenges = (challenges) => {
-    let upcomingChallenges = [];
-    let currentDate = moment().format('MM/DD/YYYY');
-
-    challenges.forEach((challenge) => {
-      if (moment(challenge.Start_Date) > moment(currentDate)) {
-        if (upcomingChallenges.length === 3) return;
-        upcomingChallenges.push(challenge);
-      }
-    });
-
+  const fetchUpcomingChallenges = async () => {
+    const { upcomingChallenges } = await getUpcomingChallenges();
     setUpcomingChallenges(upcomingChallenges);
   };
 
-  const getAllChallenges = async () => {
-    const { newDocs } = await fetchDataFireStore('Challenge');
-    if (newDocs.length) {
-      splitChallenges(newDocs);
-    }
-  };
-
   useEffect(() => {
-    getAllChallenges();
+    fetchUpcomingChallenges();
   }, []);
 
   const getUserData = async () => {
@@ -110,7 +96,11 @@ const Home = () => {
                 </div>
               ))}
             <div className='self-center'>
-              <Button title='See All' className='w-64 h-9' />
+              <Button
+                title='See All'
+                className='w-64 h-9'
+                onClick={() => router.push('/challenges')}
+              />
             </div>
           </div>
         </ContainerBox>

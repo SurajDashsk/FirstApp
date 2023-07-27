@@ -15,6 +15,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
 import { Controller, useForm } from 'react-hook-form';
+import getUpcomingChallenges from '@/app/firebase/getUpcomingChallenges';
+import getPreviousChallenges from '@/app/firebase/getPreviousChallenges';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState();
@@ -40,28 +42,28 @@ const Home = () => {
     },
   });
 
-  const splitChallenges = (challenges) => {
-    let previousChallenges = [];
-    let upcomingChallenges = [];
-    let currentDate = moment().format('MM/DD/YYYY');
+  // const splitChallenges = (challenges) => {
+  //   let previousChallenges = [];
+  //   let upcomingChallenges = [];
+  //   let currentDate = moment().format('MM/DD/YYYY');
 
-    challenges.forEach((challenge) => {
-      if (moment(challenge.Start_Date) > moment(currentDate)) {
-        upcomingChallenges.push(challenge);
-      } else {
-        previousChallenges.push(challenge);
-      }
-    });
+  //   challenges.forEach((challenge) => {
+  //     if (moment(challenge.Start_Date) > moment(currentDate)) {
+  //       upcomingChallenges.push(challenge);
+  //     } else {
+  //       previousChallenges.push(challenge);
+  //     }
+  //   });
 
-    setUpcomingChallenges(upcomingChallenges);
-    setPreviousChallenges(previousChallenges);
-  };
+  //   setUpcomingChallenges(upcomingChallenges);
+  //   setPreviousChallenges(previousChallenges);
+  // };
 
   const getAllChallenges = async () => {
-    const { newDocs } = await fetchDataFireStore('Challenge');
-    if (newDocs.length) {
-      splitChallenges(newDocs);
-    }
+    const { upcomingChallenges } = await getUpcomingChallenges();
+    setUpcomingChallenges(upcomingChallenges);
+    const { previousChallenges } = await getPreviousChallenges();
+    setPreviousChallenges(previousChallenges);
   };
 
   useEffect(() => {
@@ -236,6 +238,7 @@ const Home = () => {
                   placeholderText='Select date'
                   selected={field.value}
                   onChange={(date) => field.onChange(date)}
+                  dateFormat='dd/MM/yyyy'
                   className={`bg-light_gray px-4 py-2 rounded-lg border w-full ${
                     errors['occurence']
                       ? 'border-error_rose focus:outline-error_rose'

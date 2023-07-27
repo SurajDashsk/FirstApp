@@ -54,6 +54,29 @@ body {
     height: 80px;
 }
 
-.rdrMonth {
-  width: 100% !important;
+/* FOR DATE PICKER */
+.react-datepicker__header {
+  background-color: #169E83 !important;
+}
+
+.react-datepicker__day-name {
+  color: white !important;
+}
+
+.react-datepicker__current-month {
+  color: white !important;
+}
+
+.react-datepicker__navigation--next {
+  color: white !important;
+}
+
+.react-datepicker__triangle::before {
+  border: none !important;
+  border-top-color: #ffffff; 
+}
+
+.react-datepicker__triangle::after {
+  border: none !important;
+  border-top-color: #ffffff;
 }

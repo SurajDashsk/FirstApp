@@ -10,23 +10,35 @@ import toast from 'react-hot-toast';
 import addData from '@/app/firebase/addData';
 import fetchDataFireStore from '@/app/firebase/getData';
 
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
-import { Calendar } from 'react-date-range';
 import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+
+import { Controller, useForm } from 'react-hook-form';
 
 const Home = () => {
-  const [challengeName, setChallengeName] = useState('');
-  const [checkIns, setCheckIns] = useState('');
-  const [dayBuyIn, setDayBuyIn] = useState('');
-  const [duration, setDuration] = useState('');
-  const [challengeType, setChallengeType] = useState('');
-  const [occurence, setOccurence] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
-  const [difficulty, setDifficulty] = useState('');
   const [isLoading, setIsLoading] = useState();
   const [previousChallenges, setPreviousChallenges] = useState([]);
   const [upcomingChallenges, setUpcomingChallenges] = useState([]);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      Challenge_ID: '',
+      dayBuyIn: '',
+      checkIns: '',
+      duration: '',
+      challengeType: '',
+      occurence: '',
+      difficulty: '',
+      startDate: new Date(),
+    },
+  });
 
   const splitChallenges = (challenges) => {
     let previousChallenges = [];
@@ -52,33 +64,12 @@ const Home = () => {
     }
   };
 
-  const resetAllStates = () => {
-    setChallengeName('');
-    setCheckIns('');
-    setDayBuyIn('');
-    setDuration('');
-    setChallengeType('');
-    setOccurence('');
-    setStartDate('');
-    setDifficulty('');
-  };
-
   useEffect(() => {
     getAllChallenges();
   }, []);
 
-  const createChallenge = async () => {
+  const createChallenge = async (data) => {
     try {
-      const data = {
-        Challenge_ID: challengeName,
-        Check_ins: checkIns,
-        Daily_Buy_in: dayBuyIn,
-        Duration: duration,
-        Challenge_Type: challengeType,
-        Occurence: occurence,
-        Start_Date: moment(startDate).format('MM/DD/YYYY'),
-        Difficulty: difficulty,
-      };
       setIsLoading(true);
       const { error } = await addData('Challenge', crypto.randomUUID(), data);
 
@@ -86,7 +77,15 @@ const Home = () => {
         toast.error('Failed');
       } else {
         toast.success('Challenge Added');
-        resetAllStates();
+        reset({
+          Challenge_ID: '',
+          dayBuyIn: '',
+          checkIns: '',
+          duration: '',
+          challengeType: '',
+          occurence: '',
+          difficulty: '',
+        });
         getAllChallenges();
       }
       setIsLoading(false);
@@ -95,10 +94,6 @@ const Home = () => {
       setIsLoading(false);
       console.log('error is', e);
     }
-  };
-
-  const handleDateSelect = (date) => {
-    setStartDate(date);
   };
 
   return (
@@ -156,69 +151,111 @@ const Home = () => {
 
           <div className='flex flex-col gap-4 mt-6 justify-between'>
             <input
+              id='Challenge_ID'
+              {...register('Challenge_ID', { required: true })}
               placeholder='Challenge Name'
-              className='bg-light_gray px-4 py-2 rounded-lg focus:outline-gray'
+              className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                errors['Challenge_ID']
+                  ? 'border-error_rose focus:outline-error_rose'
+                  : 'border-light_gray focus:outline-gray'
+              }`}
               type='name'
-              required
-              onChange={(e) => setChallengeName(e.target.value)}
-              value={challengeName}
             />
             <input
               placeholder='Check-ins'
-              className='bg-light_gray px-4 py-2 rounded-lg focus:outline-gray'
+              className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                errors['checkIns']
+                  ? 'border-error_rose focus:outline-error_rose'
+                  : 'border-light_gray focus:outline-gray'
+              }`}
               type='name'
-              required
-              onChange={(e) => setCheckIns(e.target.value)}
-              value={checkIns}
+              id='checkIns'
+              {...register('checkIns', { required: true })}
             />
             <input
               placeholder='Day Buy-In'
-              className='bg-light_gray px-4 py-2 rounded-lg focus:outline-gray'
+              className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                errors['dayBuyIn']
+                  ? 'border-error_rose focus:outline-error_rose'
+                  : 'border-light_gray focus:outline-gray'
+              }`}
               type='number'
-              required
-              onChange={(e) => setDayBuyIn(e.target.value)}
-              value={dayBuyIn}
+              id='dayBuyIn'
+              {...register('dayBuyIn', { required: true })}
             />
             <input
               placeholder='Duration'
-              className='bg-light_gray px-4 py-2 rounded-lg focus:outline-gray'
+              className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                errors['duration']
+                  ? 'border-error_rose focus:outline-error_rose'
+                  : 'border-light_gray focus:outline-gray'
+              }`}
               type='number'
-              required
-              onChange={(e) => setDuration(e.target.value)}
-              value={duration}
+              id='duration'
+              {...register('duration', { required: true })}
             />
             <select
-              id='tbd'
-              className='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
-              onChange={(e) => setChallengeType(e.target.value)}
-              value={challengeType}
+              className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                errors['challengeType']
+                  ? 'border-error_rose focus:outline-error_rose'
+                  : 'border-light_gray focus:outline-gray'
+              }`}
+              id='challengeType'
+              {...register('challengeType', { required: true })}
             >
-              <option defaultValue='Challenge Type'>Challenge Type</option>
+              <option value='' disabled selected>
+                Select your Challenge
+              </option>
               <option value='US'>Other 1</option>
               <option value='CA'>Other 2</option>
               <option value='FR'>Other 3</option>
               <option value='DE'>Other 4</option>
             </select>
             <select
-              id='tbd'
-              class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
-              onChange={(e) => setOccurence(e.target.value)}
-              value={occurence}
+              className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                errors['occurence']
+                  ? 'border-error_rose focus:outline-error_rose'
+                  : 'border-light_gray focus:outline-gray'
+              }`}
+              id='occurence'
+              {...register('occurence', { required: true })}
             >
-              <option defaultValue='Occurence'>Occurence</option>
+              <option value='' disabled selected>
+                Select Occurence
+              </option>
               <option value='US'>Other 1</option>
               <option value='CA'>Other 2</option>
               <option value='FR'>Other 3</option>
               <option value='DE'>Other 4</option>
             </select>
-            <Calendar date={startDate} onChange={handleDateSelect} />
+            <Controller
+              control={control}
+              name='startDate'
+              render={({ field }) => (
+                <DatePicker
+                  placeholderText='Select date'
+                  selected={field.value}
+                  onChange={(date) => field.onChange(date)}
+                  className={`bg-light_gray px-4 py-2 rounded-lg border w-full ${
+                    errors['occurence']
+                      ? 'border-error_rose focus:outline-error_rose'
+                      : 'border-light_gray focus:outline-gray'
+                  }`}
+                />
+              )}
+            />
             <select
-              id='tbd'
-              class='bg-light_gray text-gray rounded-lg focus:outline-gray px-4 py-2'
-              onChange={(e) => setDifficulty(e.target.value)}
-              value={difficulty}
+              className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                errors['difficulty']
+                  ? 'border-error_rose focus:outline-error_rose'
+                  : 'border-light_gray focus:outline-gray'
+              }`}
+              id='difficulty'
+              {...register('difficulty', { required: true })}
             >
-              <option defaultValue='Difficulty'>Difficulty</option>
+              <option value='' disabled selected>
+                Select Difficulty
+              </option>
               <option value='US'>Other 1</option>
               <option value='CA'>Other 2</option>
               <option value='FR'>Other 3</option>
@@ -228,7 +265,7 @@ const Home = () => {
               title='Submit'
               className='w-[50%] self-center mt-16'
               disabled={isLoading}
-              onClick={createChallenge}
+              onClick={handleSubmit(createChallenge)}
             />
           </div>
         </ContainerBox>

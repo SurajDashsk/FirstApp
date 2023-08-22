@@ -8,15 +8,13 @@ import RouteGuard from '@/app/components/route-guard';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import addData from '@/app/firebase/addData';
-import fetchDataFireStore from '@/app/firebase/getData';
-
-import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
 import { Controller, useForm } from 'react-hook-form';
 import getUpcomingChallenges from '@/app/firebase/getUpcomingChallenges';
 import getPreviousChallenges from '@/app/firebase/getPreviousChallenges';
+import axios from 'axios';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState();
@@ -98,6 +96,35 @@ const Home = () => {
     }
   };
 
+  const handleView = async () => {
+    // JUST FOR TESTING WILL HAVE TO DO THIS ON IOS SIDE
+    // CheckOut Session
+    // const response = await axios.post('api/stripe/checkout-session', {
+    //   userId: '5',
+    // });
+    // const stripe = await loadStripe(
+    //   'pk_test_51NYzyvLotyyHEnsQ3x5S7x5BXaEz5ji1UKCsE0ZTNl14b6c7515LrufEj17YYSQVPrSBBH3nCJmxKjXprWSwhP4n00tm23FYXv'
+    // );
+    // stripe.redirectToCheckout({ sessionId: response.data.session });
+    // ________________________________________________________________
+    // Buy Challenge
+    // const response = await axios.post('api/challenge/1', {
+    //   userId: '5',
+    // });
+    // _________________________________________________________________
+    // Challenge Check in
+    const response = await axios.post('api/challenge/checkin/1', {
+      userId: '5',
+    });
+    console.log(response);
+    // ________________________________________________________________
+    // // Payout
+    // const response = await axios.post('api/stripe/withdraw', {
+    //   amount: '5',
+    // });
+    // console.log(response);
+  };
+
   return (
     <RouteGuard>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 h-full'>
@@ -119,7 +146,11 @@ const Home = () => {
                       <p className='text-xs text-gray'>15 Members</p>
                     </div>
                   </div>
-                  <Button title='View' className='w-[25%] h-7' />
+                  <Button
+                    title='View'
+                    className='w-[25%] h-7'
+                    onClick={handleView}
+                  />
                 </div>
               ))}
           </div>
@@ -141,7 +172,11 @@ const Home = () => {
                       <p className='text-xs text-gray'>15 Members</p>
                     </div>
                   </div>
-                  <Button title='View' className='w-[25%] h-7' />
+                  <Button
+                    title='View'
+                    className='w-[25%] h-7'
+                    onClick={handleView}
+                  />
                 </div>
               ))}
           </div>

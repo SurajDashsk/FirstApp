@@ -15,6 +15,7 @@ import { Controller, useForm } from 'react-hook-form';
 import getUpcomingChallenges from '@/app/firebase/getUpcomingChallenges';
 import getPreviousChallenges from '@/app/firebase/getPreviousChallenges';
 import axios from 'axios';
+import { loadStripe } from '@stripe/stripe-js';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState();
@@ -99,13 +100,13 @@ const Home = () => {
   const handleView = async () => {
     // JUST FOR TESTING WILL HAVE TO DO THIS ON IOS SIDE
     // CheckOut Session
-    // const response = await axios.post('api/stripe/checkout-session', {
-    //   userId: '5',
-    // });
-    // const stripe = await loadStripe(
-    //   'pk_test_51NYzyvLotyyHEnsQ3x5S7x5BXaEz5ji1UKCsE0ZTNl14b6c7515LrufEj17YYSQVPrSBBH3nCJmxKjXprWSwhP4n00tm23FYXv'
-    // );
-    // stripe.redirectToCheckout({ sessionId: response.data.session });
+    const response = await axios.post('api/stripe/checkout-session', {
+      userId: '5',
+    });
+    const stripe = await loadStripe(
+      'pk_test_51NYzyvLotyyHEnsQ3x5S7x5BXaEz5ji1UKCsE0ZTNl14b6c7515LrufEj17YYSQVPrSBBH3nCJmxKjXprWSwhP4n00tm23FYXv'
+    );
+    stripe.redirectToCheckout({ sessionId: response.data.session });
     // ________________________________________________________________
     // Buy Challenge
     // const response = await axios.post('api/challenge/1', {
@@ -113,10 +114,10 @@ const Home = () => {
     // });
     // _________________________________________________________________
     // Challenge Check in
-    const response = await axios.post('api/challenge/checkin/1', {
-      userId: '5',
-    });
-    console.log(response);
+    // const response = await axios.post('api/challenge/checkin/1', {
+    //   userId: '5',
+    // });
+    // console.log(response);
     // ________________________________________________________________
     // // Payout
     // const response = await axios.post('api/stripe/withdraw', {

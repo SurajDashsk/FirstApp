@@ -13,7 +13,7 @@ export default async function getUpcomingChallenges() {
   try {
     const dataRef = collection(db, 'Challenge');
     const currentDate = moment().toDate();
-    let q = query(dataRef, where('startDate', '>=', currentDate));
+    let q = query(dataRef, where('registrationDeadline', '>=', currentDate));
     const docsSnap = await getDocs(q);
 
     const upcomingChallenges = docsSnap.docs.map((doc) => ({

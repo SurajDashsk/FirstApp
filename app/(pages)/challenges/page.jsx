@@ -1,7 +1,6 @@
 'use client';
 import Button from '@/app/components/Button';
 import ContainerBox from '@/app/components/ContainerBox';
-
 import defaultChallengeImage from '@/public/images/default-challenge.svg';
 import Image from 'next/image';
 import RouteGuard from '@/app/components/route-guard';
@@ -10,12 +9,9 @@ import toast from 'react-hot-toast';
 import addData from '@/app/firebase/addData';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
-
 import { Controller, useForm } from 'react-hook-form';
 import getUpcomingChallenges from '@/app/firebase/getUpcomingChallenges';
 import getPreviousChallenges from '@/app/firebase/getPreviousChallenges';
-import axios from 'axios';
-import { loadStripe } from '@stripe/stripe-js';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState();
@@ -30,33 +26,33 @@ const Home = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      Challenge_ID: '',
-      dayBuyIn: '',
-      checkIns: '',
-      duration: '',
-      challengeType: '',
-      occurence: '',
-      difficulty: '',
-      startDate: new Date(),
+      dailyCheckInRequirements: {
+        gym: null,
+        run: null,
+        steps: null,
+      },
+      difficulty: null,
+      duration: null,
+      freeDays: null,
+      id: null,
+      photo: null,
+      price: null,
+      registrationDeadline: null,
+      requirements: {
+        gym: null,
+        run: null,
+        steps: null,
+      },
+      reward: {
+        company: null,
+        name: null,
+        value: null,
+        valueUnit: null,
+      },
+      title: null,
+      totalPoints: null,
     },
   });
-
-  // const splitChallenges = (challenges) => {
-  //   let previousChallenges = [];
-  //   let upcomingChallenges = [];
-  //   let currentDate = moment().format('MM/DD/YYYY');
-
-  //   challenges.forEach((challenge) => {
-  //     if (moment(challenge.Start_Date) > moment(currentDate)) {
-  //       upcomingChallenges.push(challenge);
-  //     } else {
-  //       previousChallenges.push(challenge);
-  //     }
-  //   });
-
-  //   setUpcomingChallenges(upcomingChallenges);
-  //   setPreviousChallenges(previousChallenges);
-  // };
 
   const getAllChallenges = async () => {
     const { upcomingChallenges } = await getUpcomingChallenges();
@@ -72,20 +68,69 @@ const Home = () => {
   const createChallenge = async (data) => {
     try {
       setIsLoading(true);
-      const { error } = await addData('Challenge', crypto.randomUUID(), data);
-
+  
+      // Ensure that freeDays, duration, and difficulty are integers
+      const challengeData = {
+        dailyCheckInRequirements: {
+          gym: data.dailyCheckInRequirements?.gym ?? 0,
+          run: data.dailyCheckInRequirements?.run ?? 0,
+          steps: data.dailyCheckInRequirements?.steps ?? 0,
+        },
+        difficulty: data.difficulty ? parseInt(data.difficulty) : null, // Ensure difficulty is an integer
+        duration: data.duration ? parseInt(data.duration) : null,       // Ensure duration is an integer
+        freeDays: data.freeDays ? parseInt(data.freeDays) : null,       // Ensure freeDays is an integer
+        id: crypto.randomUUID(), // Generate a unique ID for the challenge
+        photo: data.photo ?? null, // Default URL if not provided
+        price: data.price ?? null,
+        registrationDeadline: data.registrationDeadline ? data.registrationDeadline : null, // Ensure it's in ISO format
+        requirements: {
+          gym: data.requirements?.gym ?? null,
+          run: data.requirements?.run ?? null,
+          steps: data.requirements?.steps ?? null,
+        },
+        reward: {
+          company: data.reward?.company ?? null,
+          name: data.reward?.name ?? null,
+          value: data.reward?.value ?? null,
+          valueUnit: data.reward?.valueUnit ?? null,
+        },
+        title: data.title ?? null,
+        totalPoints: data.totalPoints ?? null,
+      };
+  
+      // Add the challenge data to the database
+      const { error } = await addData('Challenge', challengeData.id, challengeData);
+  
       if (error) {
-        toast.error('Failed');
+        toast.error('Failed to add challenge');
       } else {
         toast.success('Challenge Added');
         reset({
-          Challenge_ID: '',
-          dayBuyIn: '',
-          checkIns: '',
-          duration: '',
-          challengeType: '',
-          occurence: '',
-          difficulty: '',
+          dailyCheckInRequirements: {
+            gym: null,
+            run: null,
+            steps: null,
+          },
+          difficulty: null,
+          duration: null,
+          freeDays: null,
+          id: null,
+          photo: null,
+          price: null,
+          registrationDeadline: null,
+          requirements: {
+            gym: null,
+            run: null,
+            steps: null,
+          },
+          reward: {
+            company: null,
+            name: null,
+            value: null,
+            valueUnit: null,
+          },
+          title: null,
+          totalPoints: null,
         });
         getAllChallenges();
       }
@@ -93,47 +138,18 @@ const Home = () => {
     } catch (e) {
       toast.error('Failed');
       setIsLoading(false);
-      console.log('error is', e);
+      console.log('Error:', e);
     }
-  };
-
-  const handleView = async () => {
-    // JUST FOR TESTING WILL HAVE TO DO THIS ON IOS SIDE
-    // CheckOut Session
-    const response = await axios.post('api/stripe/checkout-session', {
-      userId: '5',
-    });
-    const stripe = await loadStripe(
-      'pk_test_51NYzyvLotyyHEnsQ3x5S7x5BXaEz5ji1UKCsE0ZTNl14b6c7515LrufEj17YYSQVPrSBBH3nCJmxKjXprWSwhP4n00tm23FYXv'
-    );
-    stripe.redirectToCheckout({ sessionId: response.data.session });
-    // ________________________________________________________________
-    // Buy Challenge
-    // const response = await axios.post('api/challenge/1', {
-    //   userId: '5',
-    // });
-    // _________________________________________________________________
-    // Challenge Check in
-    // const response = await axios.post('api/challenge/checkin/1', {
-    //   userId: '5',
-    // });
-    // console.log(response);
-    // ________________________________________________________________
-    // // Payout
-    // const response = await axios.post('api/stripe/withdraw', {
-    //   amount: '5',
-    // });
-    // console.log(response);
-  };
+  };  
 
   return (
     <RouteGuard>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 h-full'>
-        <ContainerBox className='h-[940px]'>
+        <ContainerBox className='h-[650px]'>
           <h1 className='text-lg font-bold'>Upcoming Challenges</h1>
 
-          {/*Upcoming challenge*/}
-          <div className='flex flex-col gap-4 mt-6 justify-center'>
+          {/*Upcoming challenge scrollable container*/}
+          <div className='flex flex-col gap-4 mt-6 justify-start overflow-y-auto h-[225px]'>
             {upcomingChallenges &&
               upcomingChallenges.map((challenge) => (
                 <div
@@ -143,14 +159,14 @@ const Home = () => {
                   <div className='flex gap-6 justify-center items-center'>
                     <Image src={defaultChallengeImage} alt='challenge' />
                     <div className='flex flex-col'>
-                      <p className='text-sm'>{challenge.Challenge_ID}</p>
-                      <p className='text-xs text-gray'>15 Members</p>
+                      <p className='text-sm'>{challenge.title}</p>
+                      <p className='text-xs text-gray'>{challenge.registrationDeadline.toDate().toLocaleDateString("en-US")}</p>
                     </div>
                   </div>
                   <Button
                     title='View'
                     className='w-[25%] h-7'
-                    onClick={handleView}
+                    // Removed Stripe logic here
                   />
                 </div>
               ))}
@@ -158,8 +174,8 @@ const Home = () => {
 
           <h1 className='text-lg font-bold mt-5'>Previous Challenges</h1>
 
-          {/*Previous challenge*/}
-          <div className='flex flex-col gap-4 mt-6 justify-center'>
+          {/*Previous challenge scrollable container*/}
+          <div className='flex flex-col gap-4 mt-6 justify-start overflow-y-auto h-[225px]'>
             {previousChallenges &&
               previousChallenges.map((challenge) => (
                 <div
@@ -169,14 +185,14 @@ const Home = () => {
                   <div className='flex gap-6 justify-center items-center'>
                     <Image src={defaultChallengeImage} alt='challenge' />
                     <div className='flex flex-col'>
-                      <p className='text-sm'>{challenge.Challenge_ID}</p>
-                      <p className='text-xs text-gray'>15 Members</p>
+                      <p className='text-sm'>{challenge.title}</p>
+                      <p className='text-xs text-gray'>{challenge.registrationDeadline.toDate().toLocaleDateString("en-US")}</p>
                     </div>
                   </div>
                   <Button
                     title='View'
                     className='w-[25%] h-7'
-                    onClick={handleView}
+                    // Removed Stripe logic here
                   />
                 </div>
               ))}
@@ -184,31 +200,31 @@ const Home = () => {
         </ContainerBox>
 
         {/*Create New Challenge*/}
-        <ContainerBox className='h-[940px]'>
+        <ContainerBox className='h-[650px]'>
           <h1 className='text-lg font-bold'>Create New Challenges</h1>
 
           <div className='flex flex-col gap-4 mt-6 justify-between'>
             <input
-              id='Challenge_ID'
-              {...register('Challenge_ID', { required: true })}
+              id='title'
+              {...register('title', { required: true })}
               placeholder='Challenge Name'
               className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['Challenge_ID']
+                errors['title']
                   ? 'border-error_rose focus:outline-error_rose'
                   : 'border-light_gray focus:outline-gray'
               }`}
-              type='name'
+              type='text'
             />
             <input
-              placeholder='Check-ins'
+              placeholder='Free Days/Rest Days'
               className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['checkIns']
+                errors['freeDays']
                   ? 'border-error_rose focus:outline-error_rose'
                   : 'border-light_gray focus:outline-gray'
               }`}
-              type='name'
-              id='checkIns'
-              {...register('checkIns', { required: true })}
+              type='number'
+              id='freeDays'
+              {...register('freeDays', { required: true })}
             />
             <input
               placeholder='Day Buy-In'
@@ -232,57 +248,48 @@ const Home = () => {
               id='duration'
               {...register('duration', { required: true })}
             />
-            <select
-              className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['challengeType']
-                  ? 'border-error_rose focus:outline-error_rose'
-                  : 'border-light_gray focus:outline-gray'
-              }`}
-              id='challengeType'
-              {...register('challengeType', { required: true })}
-            >
-              <option value='' disabled selected>
-                Select your Challenge
-              </option>
-              <option value='US'>Other 1</option>
-              <option value='CA'>Other 2</option>
-              <option value='FR'>Other 3</option>
-              <option value='DE'>Other 4</option>
-            </select>
-            <select
-              className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['occurence']
-                  ? 'border-error_rose focus:outline-error_rose'
-                  : 'border-light_gray focus:outline-gray'
-              }`}
-              id='occurence'
-              {...register('occurence', { required: true })}
-            >
-              <option value='' disabled selected>
-                Select Occurence
-              </option>
-              <option value='US'>Other 1</option>
-              <option value='CA'>Other 2</option>
-              <option value='FR'>Other 3</option>
-              <option value='DE'>Other 4</option>
-            </select>
+
             <Controller
               control={control}
-              name='startDate'
+              name="registrationDeadline"
               render={({ field }) => (
-                <DatePicker
-                  placeholderText='Select date'
-                  selected={field.value}
-                  onChange={(date) => field.onChange(date)}
-                  dateFormat='dd/MM/yyyy'
-                  className={`bg-light_gray px-4 py-2 rounded-lg border w-full ${
-                    errors['occurence']
-                      ? 'border-error_rose focus:outline-error_rose'
-                      : 'border-light_gray focus:outline-gray'
-                  }`}
-                />
+                <div className="date-picker-wrapper"> {/* Add wrapper with relative positioning */}
+                  <DatePicker
+                    placeholderText="Select date"
+                    selected={field.value}
+                    onChange={(date) => field.onChange(date)}  // Update the field value when the date changes
+                    dateFormat="MM/dd/yyyy"
+                    className={`bg-light_gray px-4 py-2 rounded-lg border w-full ${
+                      errors["registrationDeadline"]
+                        ? "border-error_rose focus:outline-error_rose"
+                        : "border-light_gray focus:outline-gray"
+                    }`}
+                    popperModifiers={[
+                      {
+                        name: "offset",
+                        options: {
+                          offset: [0, -10], // Adjust the vertical offset to bring it upwards
+                        },
+                      },
+                      {
+                        name: "preventOverflow",
+                        options: {
+                          boundary: "viewport", // Ensure the dropdown stays within the viewport
+                        },
+                      },
+                      {
+                        name: "flip",
+                        options: {
+                          enabled: true, // Allow the dropdown to flip if there isn't space
+                        },
+                      },
+                    ]}
+                    popperPlacement="top" // Ensure it pops above the input
+                  />
+                </div>
               )}
             />
+
             <select
               className={`bg-light_gray px-4 py-2 rounded-lg border ${
                 errors['difficulty']
@@ -295,11 +302,11 @@ const Home = () => {
               <option value='' disabled selected>
                 Select Difficulty
               </option>
-              <option value='US'>Other 1</option>
-              <option value='CA'>Other 2</option>
-              <option value='FR'>Other 3</option>
-              <option value='DE'>Other 4</option>
+              <option value='0'>Easy</option>
+              <option value='1'>Medium</option>
+              <option value='2'>Hard</option>
             </select>
+            
             <Button
               title='Submit'
               className='w-[50%] self-center mt-16'
@@ -312,4 +319,5 @@ const Home = () => {
     </RouteGuard>
   );
 };
+
 export default Home;

@@ -1,11 +1,15 @@
+/* global.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 html,
 body,
 :root {
   height: 100%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :root {
@@ -28,7 +32,7 @@ body {
 
 .welcomeBackText {
     color: #169E83;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     font-style: normal;
     font-weight: 700;
@@ -42,7 +46,7 @@ body {
 
 .forgotPasswordText {
     color: #169E83;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-size: 13px;
     font-style: normal;
     font-weight: 500;
@@ -55,28 +59,43 @@ body {
 }
 
 /* FOR DATE PICKER */
-.react-datepicker__header {
-  background-color: #169E83 !important;
+/* Ensure the date picker dropdown has a high z-index */
+.react-datepicker {
+  z-index: 9999 !important; /* Bring it on top of other elements */
 }
 
-.react-datepicker__day-name {
-  color: white !important;
-}
-
-.react-datepicker__current-month {
-  color: white !important;
-}
-
-.react-datepicker__navigation--next {
-  color: white !important;
-}
-
-.react-datepicker__triangle::before {
-  border: none !important;
-  border-top-color: #ffffff; 
-}
-
+/* Make sure the calendar triangle is positioned upwards if it's showing */
+.react-datepicker__triangle::before,
 .react-datepicker__triangle::after {
   border: none !important;
-  border-top-color: #ffffff;
+  border-bottom-color: #169E83 !important; /* Triangle color */
+}
+
+/* Ensure the wrapper around the date picker has relative positioning */
+.date-picker-wrapper {
+  position: relative;
+}
+/* Selected date */
+.react-datepicker__day--selected {
+  background-color: #169E83 !important;
+  color: white !important;
+}
+
+/* Hover effect for the selected date */
+.react-datepicker__day--selected:hover {
+  background-color: #169E83 !important;
+  color: white !important;
+}
+
+/* Hover effect for all days */
+.react-datepicker__day:hover {
+  background-color: #169E83 !important;
+  color: white !important;
+}
+
+/* Current day styling */
+.react-datepicker__day--today {
+  border-radius: 50%; /* Make it stand out more */
+  background-color: #169E83 !important;
+  color: white !important;
 }

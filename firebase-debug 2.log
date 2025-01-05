@@ -1,0 +1,659 @@
+[debug] [2025-01-03T05:21:47.274Z] ----------------------------------------------------------------------
+[debug] [2025-01-03T05:21:47.278Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2025-01-03T05:21:47.278Z] CLI Version:   13.29.1
+[debug] [2025-01-03T05:21:47.278Z] Platform:      darwin
+[debug] [2025-01-03T05:21:47.278Z] Node Version:  v22.12.0
+[debug] [2025-01-03T05:21:47.279Z] Time:          Thu Jan 02 2025 22:21:47 GMT-0700 (Mountain Standard Time)
+[debug] [2025-01-03T05:21:47.279Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-03T05:21:47.350Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-03T05:21:47.351Z] > authorizing via signed-in user (jorge@peerpressur.com)
+[debug] [2025-01-03T05:21:47.351Z] [iam] checking project peer-pressur-prod for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-03T05:21:47.352Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:21:47.352Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:21:47.353Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions [none]
+[debug] [2025-01-03T05:21:47.353Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions x-goog-quota-user=projects/peer-pressur-prod
+[debug] [2025-01-03T05:21:47.353Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:21:47.690Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions 200
+[debug] [2025-01-03T05:21:47.690Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:21:47.691Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:21:47.691Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:21:47.692Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod [none]
+[debug] [2025-01-03T05:21:48.106Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod 200
+[debug] [2025-01-03T05:21:48.107Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod {"projectId":"peer-pressur-prod","projectNumber":"492747715957","displayName":"Peer Pressur Prod","name":"projects/peer-pressur-prod","resources":{"hostingSite":"peer-pressur-prod","storageBucket":"peer-pressur-prod.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_cae31064-f524-4871-b269-b8b96dbdb08d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-01-03T05:21:52.771Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:21:52.771Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:21:52.771Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod [none]
+[debug] [2025-01-03T05:21:53.673Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod 200
+[debug] [2025-01-03T05:21:53.673Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod {"name":"projects/peer-pressur-prod/sites/peer-pressur-prod","defaultUrl":"https://peer-pressur-prod.web.app","appId":"1:492747715957:web:25d933735d6c7bd5ba0f3c","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/Button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/ContainerBox'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/public/images/default-challenge.svg'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/route-guard'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/firebase/addData'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-01-03T05:22:07.478Z] Error: ENOENT: no such file or directory, open '/Users/jorgeramos/Documents/GitHub/FirstApp/hosting/.next/server/middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-01-03T05:24:15.025Z] ----------------------------------------------------------------------
+[debug] [2025-01-03T05:24:15.029Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2025-01-03T05:24:15.029Z] CLI Version:   13.29.1
+[debug] [2025-01-03T05:24:15.029Z] Platform:      darwin
+[debug] [2025-01-03T05:24:15.030Z] Node Version:  v22.12.0
+[debug] [2025-01-03T05:24:15.030Z] Time:          Thu Jan 02 2025 22:24:15 GMT-0700 (Mountain Standard Time)
+[debug] [2025-01-03T05:24:15.030Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-03T05:24:15.112Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-03T05:24:15.112Z] > authorizing via signed-in user (jorge@peerpressur.com)
+[debug] [2025-01-03T05:24:15.113Z] [iam] checking project peer-pressur-prod for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-03T05:24:15.113Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:24:15.113Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:24:15.114Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions [none]
+[debug] [2025-01-03T05:24:15.114Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions x-goog-quota-user=projects/peer-pressur-prod
+[debug] [2025-01-03T05:24:15.114Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:24:15.434Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions 200
+[debug] [2025-01-03T05:24:15.434Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:24:15.435Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:24:15.435Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:24:15.435Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod [none]
+[debug] [2025-01-03T05:24:15.884Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod 200
+[debug] [2025-01-03T05:24:15.885Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod {"projectId":"peer-pressur-prod","projectNumber":"492747715957","displayName":"Peer Pressur Prod","name":"projects/peer-pressur-prod","resources":{"hostingSite":"peer-pressur-prod","storageBucket":"peer-pressur-prod.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_cae31064-f524-4871-b269-b8b96dbdb08d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-01-03T05:24:20.704Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:24:20.704Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:24:20.704Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod [none]
+[debug] [2025-01-03T05:24:21.508Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod 200
+[debug] [2025-01-03T05:24:21.508Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod {"name":"projects/peer-pressur-prod/sites/peer-pressur-prod","defaultUrl":"https://peer-pressur-prod.web.app","appId":"1:492747715957:web:25d933735d6c7bd5ba0f3c","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/Button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/ContainerBox'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/public/images/default-challenge.svg'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/route-guard'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/firebase/addData'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-01-03T05:24:27.531Z] Error: ENOENT: no such file or directory, open '/Users/jorgeramos/Documents/GitHub/FirstApp/hosting/.next/server/middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-01-03T05:26:02.198Z] ----------------------------------------------------------------------
+[debug] [2025-01-03T05:26:02.200Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2025-01-03T05:26:02.201Z] CLI Version:   13.29.1
+[debug] [2025-01-03T05:26:02.201Z] Platform:      darwin
+[debug] [2025-01-03T05:26:02.202Z] Node Version:  v22.12.0
+[debug] [2025-01-03T05:26:02.202Z] Time:          Thu Jan 02 2025 22:26:02 GMT-0700 (Mountain Standard Time)
+[debug] [2025-01-03T05:26:02.202Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-03T05:26:02.280Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-03T05:26:02.281Z] > authorizing via signed-in user (jorge@peerpressur.com)
+[debug] [2025-01-03T05:26:02.281Z] [iam] checking project peer-pressur-prod for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-03T05:26:02.283Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:26:02.283Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:26:02.284Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions [none]
+[debug] [2025-01-03T05:26:02.284Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions x-goog-quota-user=projects/peer-pressur-prod
+[debug] [2025-01-03T05:26:02.284Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:26:02.695Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions 200
+[debug] [2025-01-03T05:26:02.695Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:26:02.697Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:26:02.697Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:26:02.697Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod [none]
+[debug] [2025-01-03T05:26:03.161Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod 200
+[debug] [2025-01-03T05:26:03.161Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod {"projectId":"peer-pressur-prod","projectNumber":"492747715957","displayName":"Peer Pressur Prod","name":"projects/peer-pressur-prod","resources":{"hostingSite":"peer-pressur-prod","storageBucket":"peer-pressur-prod.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_cae31064-f524-4871-b269-b8b96dbdb08d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-01-03T05:26:08.527Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:26:08.527Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:26:08.528Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod [none]
+[debug] [2025-01-03T05:26:09.164Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod 200
+[debug] [2025-01-03T05:26:09.165Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod {"name":"projects/peer-pressur-prod/sites/peer-pressur-prod","defaultUrl":"https://peer-pressur-prod.web.app","appId":"1:492747715957:web:25d933735d6c7bd5ba0f3c","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/Button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/ContainerBox'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/public/images/default-challenge.svg'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/route-guard'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/firebase/addData'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-01-03T05:26:15.949Z] Error: ENOENT: no such file or directory, open '/Users/jorgeramos/Documents/GitHub/FirstApp/hosting/.next/server/middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-01-03T05:28:22.974Z] ----------------------------------------------------------------------
+[debug] [2025-01-03T05:28:22.977Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2025-01-03T05:28:22.978Z] CLI Version:   13.29.1
+[debug] [2025-01-03T05:28:22.978Z] Platform:      darwin
+[debug] [2025-01-03T05:28:22.978Z] Node Version:  v22.12.0
+[debug] [2025-01-03T05:28:22.979Z] Time:          Thu Jan 02 2025 22:28:22 GMT-0700 (Mountain Standard Time)
+[debug] [2025-01-03T05:28:22.979Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-03T05:28:23.048Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-03T05:28:23.048Z] > authorizing via signed-in user (jorge@peerpressur.com)
+[debug] [2025-01-03T05:28:23.048Z] [iam] checking project peer-pressur-prod for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-03T05:28:23.049Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:28:23.049Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:28:23.050Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions [none]
+[debug] [2025-01-03T05:28:23.050Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions x-goog-quota-user=projects/peer-pressur-prod
+[debug] [2025-01-03T05:28:23.050Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:28:23.484Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions 200
+[debug] [2025-01-03T05:28:23.485Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:28:23.486Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:28:23.486Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:28:23.486Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod [none]
+[debug] [2025-01-03T05:28:23.828Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod 200
+[debug] [2025-01-03T05:28:23.828Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod {"projectId":"peer-pressur-prod","projectNumber":"492747715957","displayName":"Peer Pressur Prod","name":"projects/peer-pressur-prod","resources":{"hostingSite":"peer-pressur-prod","storageBucket":"peer-pressur-prod.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_cae31064-f524-4871-b269-b8b96dbdb08d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-01-03T05:28:29.958Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:28:29.958Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:28:29.958Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod [none]
+[debug] [2025-01-03T05:28:30.706Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod 200
+[debug] [2025-01-03T05:28:30.706Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod {"name":"projects/peer-pressur-prod/sites/peer-pressur-prod","defaultUrl":"https://peer-pressur-prod.web.app","appId":"1:492747715957:web:25d933735d6c7bd5ba0f3c","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve './app/components/Button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve './app/components/ContainerBox'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve './public/images/default-challenge.svg'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '@/app/components/route-guard'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve './app/firebase/addData'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-01-03T05:28:40.015Z] Error: ENOENT: no such file or directory, open '/Users/jorgeramos/Documents/GitHub/FirstApp/hosting/.next/server/middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-01-03T05:33:02.780Z] ----------------------------------------------------------------------
+[debug] [2025-01-03T05:33:02.793Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2025-01-03T05:33:02.794Z] CLI Version:   13.29.1
+[debug] [2025-01-03T05:33:02.794Z] Platform:      darwin
+[debug] [2025-01-03T05:33:02.794Z] Node Version:  v22.12.0
+[debug] [2025-01-03T05:33:02.795Z] Time:          Thu Jan 02 2025 22:33:02 GMT-0700 (Mountain Standard Time)
+[debug] [2025-01-03T05:33:02.795Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-03T05:33:02.882Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-03T05:33:02.882Z] > authorizing via signed-in user (jorge@peerpressur.com)
+[debug] [2025-01-03T05:33:02.883Z] [iam] checking project peer-pressur-prod for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-03T05:33:02.885Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:33:02.885Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:33:02.888Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions [none]
+[debug] [2025-01-03T05:33:02.888Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions x-goog-quota-user=projects/peer-pressur-prod
+[debug] [2025-01-03T05:33:02.888Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:33:03.381Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions 200
+[debug] [2025-01-03T05:33:03.381Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:33:03.382Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:33:03.382Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:33:03.382Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod [none]
+[debug] [2025-01-03T05:33:03.689Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod 200
+[debug] [2025-01-03T05:33:03.689Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod {"projectId":"peer-pressur-prod","projectNumber":"492747715957","displayName":"Peer Pressur Prod","name":"projects/peer-pressur-prod","resources":{"hostingSite":"peer-pressur-prod","storageBucket":"peer-pressur-prod.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_cae31064-f524-4871-b269-b8b96dbdb08d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-01-03T05:33:09.921Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:33:09.921Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:33:09.921Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod [none]
+[debug] [2025-01-03T05:33:10.556Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod 200
+[debug] [2025-01-03T05:33:10.556Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod {"name":"projects/peer-pressur-prod/sites/peer-pressur-prod","defaultUrl":"https://peer-pressur-prod.web.app","appId":"1:492747715957:web:25d933735d6c7bd5ba0f3c","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../app/components/Button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../app/components/ContainerBox'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../public/images/default-challenge.svg'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../app/components/route-guard'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../app/firebase/addData'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-01-03T05:33:20.700Z] Error: ENOENT: no such file or directory, open '/Users/jorgeramos/Documents/GitHub/FirstApp/hosting/.next/server/middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-01-03T05:36:47.159Z] ----------------------------------------------------------------------
+[debug] [2025-01-03T05:36:47.164Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2025-01-03T05:36:47.165Z] CLI Version:   13.29.1
+[debug] [2025-01-03T05:36:47.165Z] Platform:      darwin
+[debug] [2025-01-03T05:36:47.165Z] Node Version:  v22.12.0
+[debug] [2025-01-03T05:36:47.165Z] Time:          Thu Jan 02 2025 22:36:47 GMT-0700 (Mountain Standard Time)
+[debug] [2025-01-03T05:36:47.165Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-03T05:36:47.237Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-03T05:36:47.238Z] > authorizing via signed-in user (jorge@peerpressur.com)
+[debug] [2025-01-03T05:36:47.238Z] [iam] checking project peer-pressur-prod for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-03T05:36:47.239Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:36:47.239Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:36:47.239Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions [none]
+[debug] [2025-01-03T05:36:47.240Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions x-goog-quota-user=projects/peer-pressur-prod
+[debug] [2025-01-03T05:36:47.240Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:36:52.317Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions 200
+[debug] [2025-01-03T05:36:52.318Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:36:52.318Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:36:52.319Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:36:52.319Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod [none]
+[debug] [2025-01-03T05:36:57.889Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod 200
+[debug] [2025-01-03T05:36:57.889Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod {"projectId":"peer-pressur-prod","projectNumber":"492747715957","displayName":"Peer Pressur Prod","name":"projects/peer-pressur-prod","resources":{"hostingSite":"peer-pressur-prod","storageBucket":"peer-pressur-prod.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_cae31064-f524-4871-b269-b8b96dbdb08d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-01-03T05:37:02.874Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:37:02.874Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:37:02.874Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod [none]
+[debug] [2025-01-03T05:37:12.122Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod 200
+[debug] [2025-01-03T05:37:12.122Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod {"name":"projects/peer-pressur-prod/sites/peer-pressur-prod","defaultUrl":"https://peer-pressur-prod.web.app","appId":"1:492747715957:web:25d933735d6c7bd5ba0f3c","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../hosting/app/components/Button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../app/components/ContainerBox'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../public/images/default-challenge.svg'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../app/components/route-guard'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../hosting/app/firebase/addData'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-01-03T05:37:27.122Z] Error: Timed out.
+    at Timeout._onTimeout (/usr/local/lib/node_modules/firebase-tools/lib/utils.js:269:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-01-03T05:38:19.803Z] ----------------------------------------------------------------------
+[debug] [2025-01-03T05:38:19.807Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2025-01-03T05:38:19.807Z] CLI Version:   13.29.1
+[debug] [2025-01-03T05:38:19.807Z] Platform:      darwin
+[debug] [2025-01-03T05:38:19.807Z] Node Version:  v22.12.0
+[debug] [2025-01-03T05:38:19.808Z] Time:          Thu Jan 02 2025 22:38:19 GMT-0700 (Mountain Standard Time)
+[debug] [2025-01-03T05:38:19.808Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-03T05:38:19.874Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-03T05:38:19.875Z] > authorizing via signed-in user (jorge@peerpressur.com)
+[debug] [2025-01-03T05:38:19.875Z] [iam] checking project peer-pressur-prod for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-03T05:38:19.875Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:38:19.876Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:38:19.876Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions [none]
+[debug] [2025-01-03T05:38:19.876Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions x-goog-quota-user=projects/peer-pressur-prod
+[debug] [2025-01-03T05:38:19.876Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:38:21.838Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions 200
+[debug] [2025-01-03T05:38:21.838Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:38:21.839Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:38:21.839Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:38:21.839Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod [none]
+[debug] [2025-01-03T05:38:24.129Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod 200
+[debug] [2025-01-03T05:38:24.130Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod {"projectId":"peer-pressur-prod","projectNumber":"492747715957","displayName":"Peer Pressur Prod","name":"projects/peer-pressur-prod","resources":{"hostingSite":"peer-pressur-prod","storageBucket":"peer-pressur-prod.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_cae31064-f524-4871-b269-b8b96dbdb08d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-01-03T05:38:29.281Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:38:29.281Z] Checked if tokens are valid: true, expires at: 1735883616587
+[debug] [2025-01-03T05:38:29.282Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod [none]
+[debug] [2025-01-03T05:38:33.471Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod 200
+[debug] [2025-01-03T05:38:33.472Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod {"name":"projects/peer-pressur-prod/sites/peer-pressur-prod","defaultUrl":"https://peer-pressur-prod.web.app","appId":"1:492747715957:web:25d933735d6c7bd5ba0f3c","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../components/Button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../app/components/ContainerBox'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../public/images/default-challenge.svg'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../app/components/route-guard'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../hosting/app/firebase/addData'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-01-03T05:38:44.505Z] Error: Timed out.
+    at Timeout._onTimeout (/usr/local/lib/node_modules/firebase-tools/lib/utils.js:269:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-01-03T05:42:31.567Z] ----------------------------------------------------------------------
+[debug] [2025-01-03T05:42:31.570Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2025-01-03T05:42:31.570Z] CLI Version:   13.29.1
+[debug] [2025-01-03T05:42:31.570Z] Platform:      darwin
+[debug] [2025-01-03T05:42:31.570Z] Node Version:  v22.12.0
+[debug] [2025-01-03T05:42:31.570Z] Time:          Thu Jan 02 2025 22:42:31 GMT-0700 (Mountain Standard Time)
+[debug] [2025-01-03T05:42:31.571Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-03T05:42:31.635Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-03T05:42:31.635Z] > authorizing via signed-in user (jorge@peerpressur.com)
+[debug] [2025-01-03T05:42:31.635Z] [iam] checking project peer-pressur-prod for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-01-03T05:42:31.636Z] Checked if tokens are valid: false, expires at: 1735883616587
+[debug] [2025-01-03T05:42:31.637Z] Checked if tokens are valid: false, expires at: 1735883616587
+[debug] [2025-01-03T05:42:31.637Z] > refreshing access token with scopes: []
+[debug] [2025-01-03T05:42:31.639Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-01-03T05:42:31.639Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-01-03T05:42:33.420Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-01-03T05:42:33.420Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-01-03T05:42:33.474Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions [none]
+[debug] [2025-01-03T05:42:33.475Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions x-goog-quota-user=projects/peer-pressur-prod
+[debug] [2025-01-03T05:42:33.475Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:42:33.951Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions 200
+[debug] [2025-01-03T05:42:33.951Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/peer-pressur-prod:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-01-03T05:42:33.952Z] Checked if tokens are valid: true, expires at: 1735886552420
+[debug] [2025-01-03T05:42:33.952Z] Checked if tokens are valid: true, expires at: 1735886552420
+[debug] [2025-01-03T05:42:33.952Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod [none]
+[debug] [2025-01-03T05:42:34.506Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod 200
+[debug] [2025-01-03T05:42:34.506Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/peer-pressur-prod {"projectId":"peer-pressur-prod","projectNumber":"492747715957","displayName":"Peer Pressur Prod","name":"projects/peer-pressur-prod","resources":{"hostingSite":"peer-pressur-prod","storageBucket":"peer-pressur-prod.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_cae31064-f524-4871-b269-b8b96dbdb08d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-01-03T05:42:40.079Z] Checked if tokens are valid: true, expires at: 1735886552420
+[debug] [2025-01-03T05:42:40.079Z] Checked if tokens are valid: true, expires at: 1735886552420
+[debug] [2025-01-03T05:42:40.079Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod [none]
+[debug] [2025-01-03T05:42:41.815Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod 200
+[debug] [2025-01-03T05:42:41.815Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/peer-pressur-prod/sites/peer-pressur-prod {"name":"projects/peer-pressur-prod/sites/peer-pressur-prod","defaultUrl":"https://peer-pressur-prod.web.app","appId":"1:492747715957:web:25d933735d6c7bd5ba0f3c","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info] Failed to compile.
+
+
+[info] ./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../components/Button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../components/ContainerBox'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../public/images/default-challenge.svg'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../components/route-guard'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(pages)/challenges/page.jsx
+Module not found: Can't resolve '../firebase/addData'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[info] 
+
+[info] > Build failed because of webpack errors
+
+[debug] [2025-01-03T05:42:48.754Z] Error: ENOENT: no such file or directory, open '/Users/jorgeramos/Documents/GitHub/FirstApp/hosting/.next/server/middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.

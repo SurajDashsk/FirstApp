@@ -32,10 +32,10 @@ const Navbar = () => {
           height='50px'
         />
 
-        <div className='flex gap-2 justify-center items-center'>
+        {/* <div className='flex gap-2 justify-center items-center'>
           <p className='text-green font-semibold tracking-wider'>Jorge Ramos Putz</p>
           <Image alt='profile-image' src={defaultProfileImage} height={50} width={50} />
-        </div>
+        </div> */}
       </Flex>
     </Stack>
   );

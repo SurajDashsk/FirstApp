@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 import addData from '@/app/firebase/addData';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm, watch } from 'react-hook-form';
 import getUpcomingChallenges from '@/app/firebase/getUpcomingChallenges';
 import getPreviousChallenges from '@/app/firebase/getPreviousChallenges';
 
@@ -23,7 +23,9 @@ const Home = () => {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors },
+    watch
   } = useForm({
     defaultValues: {
       dailyCheckInRequirements: {
@@ -36,7 +38,7 @@ const Home = () => {
       freeDays: null,
       id: null,
       photo: null,
-      price: null,
+      price: 1,
       registrationDeadline: null,
       requirements: {
         gym: null,
@@ -65,10 +67,19 @@ const Home = () => {
     getAllChallenges();
   }, []);
 
+  useEffect(() => {
+    const duration = watch('duration',7);  // Now correctly using watch() as a function
+    if (duration) {
+      const calculatedPrice = Math.max(Math.floor(duration / 6), 1);  // Ensure price is not less than 1
+      setValue('price', calculatedPrice);  // Set price value programmatically
+    }
+  }, [watch('duration'), setValue]);  // Recalculate whenever duration changes
+  
+  
   const createChallenge = async (data) => {
     try {
       setIsLoading(true);
-  
+
       // Ensure that freeDays, duration, and difficulty are integers
       const challengeData = {
         dailyCheckInRequirements: {
@@ -76,31 +87,31 @@ const Home = () => {
           run: data.dailyCheckInRequirements?.run ?? 0,
           steps: data.dailyCheckInRequirements?.steps ?? 0,
         },
-        difficulty: data.difficulty ? parseInt(data.difficulty) : null, // Ensure difficulty is an integer
-        duration: data.duration ? parseInt(data.duration) : null,       // Ensure duration is an integer
-        freeDays: data.freeDays ? parseInt(data.freeDays) : null,       // Ensure freeDays is an integer
-        id: crypto.randomUUID(), // Generate a unique ID for the challenge
-        photo: data.photo ?? null, // Default URL if not provided
-        price: data.price ?? null,
-        registrationDeadline: data.registrationDeadline ? data.registrationDeadline : null, // Ensure it's in ISO format
+        difficulty: data.difficulty ? parseInt(data.difficulty) : 0,
+        duration: data.duration ? parseInt(data.duration) : 7,
+        freeDays: data.freeDays ? parseInt(data.freeDays) : 2,
+        id: crypto.randomUUID(),
+        photo: data.photo ?? null,
+        price: data.price ? parseInt(data.price) : 1,
+        registrationDeadline: data.registrationDeadline ? data.registrationDeadline : null,
         requirements: {
-          gym: data.requirements?.gym ?? null,
-          run: data.requirements?.run ?? null,
-          steps: data.requirements?.steps ?? null,
+          gym: data.requirements?.gym ? parseInt(data.requirements?.gym) : 30,
+          run: data.requirements?.run ? parseInt(data.requirements?.run) : 2,
+          steps: data.requirements?.steps ? parseInt(data.requirements?.steps) : 1000,
         },
         reward: {
           company: data.reward?.company ?? null,
           name: data.reward?.name ?? null,
-          value: data.reward?.value ?? null,
+          value: data.reward?.value ? parseInt(data.reward?.value) : null,
           valueUnit: data.reward?.valueUnit ?? null,
         },
         title: data.title ?? null,
-        totalPoints: data.totalPoints ?? null,
+        totalPoints: data.totalPoints ?? 110,
       };
-  
+
       // Add the challenge data to the database
       const { error } = await addData('Challenge', challengeData.id, challengeData);
-  
+
       if (error) {
         toast.error('Failed to add challenge');
       } else {
@@ -140,16 +151,15 @@ const Home = () => {
       setIsLoading(false);
       console.log('Error:', e);
     }
-  };  
+  };
 
   return (
     <RouteGuard>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 h-full'>
-        <ContainerBox className='h-[650px]'>
+        <ContainerBox className='h-[700px]'>
           <h1 className='text-lg font-bold'>Upcoming Challenges</h1>
 
-          {/*Upcoming challenge scrollable container*/}
-          <div className='flex flex-col gap-4 mt-6 justify-start overflow-y-auto h-[225px]'>
+          <div className='flex flex-col gap-4 mt-6 justify-start overflow-y-auto h-[250px]'>
             {upcomingChallenges &&
               upcomingChallenges.map((challenge) => (
                 <div
@@ -157,16 +167,22 @@ const Home = () => {
                   key={challenge.id}
                 >
                   <div className='flex gap-6 justify-center items-center'>
-                    <Image src={defaultChallengeImage} alt='challenge' />
+                                        <div className="relative w-10 h-10 overflow-hidden rounded-full">
+                                          <Image
+                                            src={challenge.photo ? challenge.photo : defaultChallengeImage}
+                                            alt="challenge"
+                                            layout="fill"         // This will make the image fill the parent container
+                                            objectFit="cover"     // Ensures the image covers the circle area
+                                          />
+                                        </div>
                     <div className='flex flex-col'>
-                      <p className='text-sm'>{challenge.title}</p>
-                      <p className='text-xs text-gray'>{challenge.registrationDeadline.toDate().toLocaleDateString("en-US")}</p>
+                      <p className='text-sm font-semibold text-primary'>{challenge.title}</p>
+                      <p className='text-xs'>Registration Deadline: {challenge.registrationDeadline.toDate().toLocaleDateString("en-US")}</p>
                     </div>
                   </div>
                   <Button
-                    title='View'
+                    title='Active'
                     className='w-[25%] h-7'
-                    // Removed Stripe logic here
                   />
                 </div>
               ))}
@@ -174,8 +190,7 @@ const Home = () => {
 
           <h1 className='text-lg font-bold mt-5'>Previous Challenges</h1>
 
-          {/*Previous challenge scrollable container*/}
-          <div className='flex flex-col gap-4 mt-6 justify-start overflow-y-auto h-[225px]'>
+          <div className='flex flex-col gap-4 mt-6 justify-start overflow-y-auto h-[250px]'>
             {previousChallenges &&
               previousChallenges.map((challenge) => (
                 <div
@@ -183,72 +198,82 @@ const Home = () => {
                   key={challenge.id}
                 >
                   <div className='flex gap-6 justify-center items-center'>
-                    <Image src={defaultChallengeImage} alt='challenge' />
+                                        <div className="relative w-10 h-10 overflow-hidden rounded-full">
+                                          <Image
+                                            src={challenge.photo ? challenge.photo : defaultChallengeImage}
+                                            alt="challenge"
+                                            layout="fill"         // This will make the image fill the parent container
+                                            objectFit="cover"     // Ensures the image covers the circle area
+                                          />
+                                        </div>
                     <div className='flex flex-col'>
-                      <p className='text-sm'>{challenge.title}</p>
-                      <p className='text-xs text-gray'>{challenge.registrationDeadline.toDate().toLocaleDateString("en-US")}</p>
+                      <p className='text-sm font-semibold text-primary'>{challenge.title}</p>
+                      <p className='text-xs'>Registration Deadline: {challenge.registrationDeadline.toDate().toLocaleDateString("en-US")}</p>
                     </div>
                   </div>
                   <Button
-                    title='View'
+                    title='Finished'
                     className='w-[25%] h-7'
-                    // Removed Stripe logic here
                   />
                 </div>
               ))}
           </div>
         </ContainerBox>
 
-        {/*Create New Challenge*/}
-        <ContainerBox className='h-[650px]'>
-          <h1 className='text-lg font-bold'>Create New Challenges</h1>
+        <ContainerBox className='h-[700px]'>
+          <h1 className='text-lg font-bold'>Create a New Challenge</h1>
 
-          <div className='flex flex-col gap-4 mt-6 justify-between'>
+          <div className='flex flex-col gap-3 mt-1 justify-between'>
+            <h1 className='text-m'>Challenge Info</h1>
             <input
               id='title'
               {...register('title', { required: true })}
               placeholder='Challenge Name'
               className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['title']
-                  ? 'border-error_rose focus:outline-error_rose'
-                  : 'border-light_gray focus:outline-gray'
+                errors['title'] ? 'border-error_rose focus:outline-error_rose' : 'border-light_gray focus:outline-gray'
               }`}
               type='text'
             />
+
+            {/* Free Days */}
             <input
               placeholder='Free Days/Rest Days'
               className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['freeDays']
-                  ? 'border-error_rose focus:outline-error_rose'
-                  : 'border-light_gray focus:outline-gray'
+                errors['freeDays'] ? 'border-error_rose focus:outline-error_rose' : 'border-light_gray focus:outline-gray'
               }`}
               type='number'
               id='freeDays'
               {...register('freeDays', { required: true })}
             />
+
+            {/* Duration */}
             <input
-              placeholder='Day Buy-In'
+              placeholder='Duration (in Days)'
               className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['dayBuyIn']
-                  ? 'border-error_rose focus:outline-error_rose'
-                  : 'border-light_gray focus:outline-gray'
-              }`}
-              type='number'
-              id='dayBuyIn'
-              {...register('dayBuyIn', { required: true })}
-            />
-            <input
-              placeholder='Duration'
-              className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['duration']
-                  ? 'border-error_rose focus:outline-error_rose'
-                  : 'border-light_gray focus:outline-gray'
+                errors['duration'] ? 'border-error_rose focus:outline-error_rose' : 'border-light_gray focus:outline-gray'
               }`}
               type='number'
               id='duration'
               {...register('duration', { required: true })}
             />
 
+            {/* Difficulty */}
+            <select
+              className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                errors['difficulty'] ? 'border-error_rose focus:outline-error_rose' : 'border-light_gray focus:outline-gray'
+              }`}
+              id='difficulty'
+              {...register('difficulty', { required: true })}
+            >
+              <option value='' disabled>
+                Select Difficulty
+              </option>
+              <option value='0'>Easy</option>
+              <option value='1'>Medium</option>
+              <option value='2'>Hard</option>
+            </select>
+
+            {/* Registration Deadline */}
             <Controller
               control={control}
               name="registrationDeadline"
@@ -290,26 +315,82 @@ const Home = () => {
               )}
             />
 
-            <select
-              className={`bg-light_gray px-4 py-2 rounded-lg border ${
-                errors['difficulty']
-                  ? 'border-error_rose focus:outline-error_rose'
-                  : 'border-light_gray focus:outline-gray'
-              }`}
-              id='difficulty'
-              {...register('difficulty', { required: true })}
-            >
-              <option value='' disabled selected>
-                Select Difficulty
-              </option>
-              <option value='0'>Easy</option>
-              <option value='1'>Medium</option>
-              <option value='2'>Hard</option>
-            </select>
-            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Check-In Requirements */}
+                    <div className="flex flex-col gap-4">
+                      <h2>Check-In Requirements</h2>
+                      <input
+                        placeholder="Gym (min per day)"
+                        className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                          errors["requirements.gym"] ? "border-error_rose focus:outline-error_rose" : "border-light_gray focus:outline-gray"
+                        }`}
+                        type="number"
+                        {...register("requirements.gym")}
+                      />
+                      <input
+                        placeholder="Run (miles per day)"
+                        className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                          errors["requirements.run"] ? "border-error_rose focus:outline-error_rose" : "border-light_gray focus:outline-gray"
+                        }`}
+                        type="number"
+                        {...register("requirements.run")}
+                      />
+                      <input
+                        placeholder="Steps (per day)"
+                        className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                          errors["requirements.steps"] ? "border-error_rose focus:outline-error_rose" : "border-light_gray focus:outline-gray"
+                        }`}
+                        type="number"
+                        {...register("requirements.steps")}
+                      />
+                    </div>
+
+                    {/* Reward Info */}
+                    <div className="flex flex-col gap-4">
+                      <h2>Reward Info</h2>
+                      <input
+                        placeholder="Reward Company"
+                        className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                          errors["reward.company"] ? "border-error_rose focus:outline-error_rose" : "border-light_gray focus:outline-gray"
+                        }`}
+                        type="text"
+                        {...register("reward.company")}
+                      />
+                      <input
+                        placeholder="Reward Name"
+                        className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                          errors["reward.name"] ? "border-error_rose focus:outline-error_rose" : "border-light_gray focus:outline-gray"
+                        }`}
+                        type="text"
+                        {...register("reward.name")}
+                      />
+                      <input
+                        placeholder="Reward Value"
+                        className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                          errors["reward.value"] ? "border-error_rose focus:outline-error_rose" : "border-light_gray focus:outline-gray"
+                        }`}
+                        type="number"
+                        {...register("reward.value")}
+                      />
+                      <select
+                        className={`bg-light_gray px-4 py-2 rounded-lg border ${
+                          errors["reward.valueUnit"] ? "border-error_rose focus:outline-error_rose" : "border-light_gray focus:outline-gray"
+                        }`}
+                        id="rewardValueUnit"
+                        {...register("reward.valueUnit", { required: true })}
+                      >
+                        <option value="" disabled>
+                          Select Reward Unit
+                        </option>
+                        <option value="percent">%</option>
+                        <option value="dollar">$</option>
+                      </select>
+                    </div>
+                  </div>
+            {/* Submit Button */}
             <Button
               title='Submit'
-              className='w-[50%] self-center mt-16'
+              className='w-[50%] self-center mt-3'
               disabled={isLoading}
               onClick={handleSubmit(createChallenge)}
             />

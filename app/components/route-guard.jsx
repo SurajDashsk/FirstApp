@@ -1,34 +1,32 @@
 'use client';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-
 import { useEffect, useState } from 'react';
 import firebase_app from '../firebase/config';
 
 const RouteGuard = ({ children }) => {
   const auth = getAuth(firebase_app);
   const router = useRouter();
-  const [user, setUser] = useState(auth.currentUser);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!user) {
-      router.push('/login');
-      return;
-    }
-    //else {
-    //setAuthorized(true);
-    //}
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);  // Update user state if authenticated
+      } else {
+        setUser(null);  // Set user to null if not authenticated
+        router.push('/login');  // Redirect to login if no user
+      }
+    });
 
-    // const preventAccess = () => setAuthorized(false);
+    // Cleanup listener on unmount
+    return () => unsubscribe();
+  }, [auth, router]);
 
-    // router.events.on('routeChangeStart', preventAccess);
-    // router.events.on('routeChangeComplete', authCheck);
-
-    // return () => {
-    //   router.events.off('routeChangeStart', preventAccess);
-    //   router.events.off('routeChangeComplete', authCheck);
-    // };
-  }, [user]);
+  if (user === null) {
+    // Return null or a loading indicator while checking auth state
+    return <div>Loading...</div>;
+  }
 
   return children;
 };

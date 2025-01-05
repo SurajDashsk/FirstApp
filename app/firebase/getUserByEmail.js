@@ -10,12 +10,12 @@ import {
 import firebase_app from './config';
 
 const db = getFirestore(firebase_app);
-export default async function getUserByEmail(collectionName, email) {
-  let docRef = collection(db, collectionName);
+export default async function getUserByEmail(email) {
+  let docRef = collection(db, 'User');
   const q = query(
     docRef,
     where('isAdmin', '==', true),
-    where('Email', '==', email)
+    where('email', '==', email)
   );
 
   let result = null;

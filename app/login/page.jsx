@@ -9,8 +9,6 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 import getUserByEmail from '../firebase/getUserByEmail';
 
-console.log(firebase_app);
-
 const Login = () => {
   const sidebarModal = useSidebarModal();
   const router = useRouter();
@@ -27,8 +25,6 @@ const Login = () => {
   const signIn = async () => {
     try {
       setIsLoading(true);
-
-      //await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
       const response = await signInWithEmailAndPassword(auth, email, password);
 
@@ -58,74 +54,80 @@ const Login = () => {
       maxWidth="100%"
       background="#FAFAFA"
       align="center"
+      justify="center"  // Added to center the content vertically
       className="ml-0"
     >
-      <Box width="150px" height="50px" />
-      <Box
-        borderRadius="30px"
-        width="556px"
-        height="fit-content"
-        background="#FFFFFF"
-        boxShadow="1px 1px 35px 0px rgba(0, 0, 0, 0.25)"
-        mx={0}
-        padding={12}
-      >
-        {/* Container for Welcome Back text and logo */}
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+      <Box width="100%" maxWidth="400px" p={4} mb={4}> {/* Adjust for mobile */}
+        <Box
+          borderRadius="30px"
+          background="#FFFFFF"
+          boxShadow="1px 1px 35px 0px rgba(0, 0, 0, 0.25)"
+          padding={6}
+          width="100%"
+        >
+          {/* Container for Welcome Back text and logo */}
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+            <Stack
+              direction="row"  // Keep Stack children (logo + text) in a row
+              spacing={4}
+              align="center"
+              justify="center"  // Center content on mobile
+            >
+              <img
+                src="logo.png"
+                className="logoImg"
+                alt="Logo"
+                width="40px"  // Reduce size on mobile
+                height="40px"
+              />
+              <p className="welcomeBackText" style={{ marginRight: '10px', fontSize: '20px' }}>Welcome Back</p>
+            </Stack>
+          </div>
+
           <Stack
-            direction="row"  // Make Stack children (image) display in a row
+            width="100%"
+            padding={8}
+            mt="6"
             spacing={4}
-            align="center"
+            align="start"
+            justify="center"
+            direction="column"
           >
-            <img
-              src="logo.png"
-              className="logoImg"
-              alt="Logo"
-              width="50px"
-              height="50px"
+            <Input
+              id="email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              variant="flushed"
+              placeholder="Email"
+              className="emailInput"
+              disabled={isLoading}
+              width="80%"  // Make it full-width on mobile
             />
-            <p className="welcomeBackText" style={{ marginRight: '10px' }}>Welcome Back</p>
+            <Input
+              id="password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              variant="flushed"
+              placeholder="Password"
+              className="passwordInput"
+              disabled={isLoading}
+              width="80%"  // Make it full-width on mobile
+            />
           </Stack>
-        </div>
 
-        <Stack width="inherit" padding={8} mt="10" spacing={4} align="start" justify="center">
-          <Input
-            id="email"
-            type="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            variant="flushed"
-            placeholder="Email"
-            className="emailInput"
-            disabled={isLoading}
-            width="311px"
-          />
-          <Input
-            id="password"
-            type="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            variant="flushed"
-            placeholder="Password"
-            className="passwordInput"
-            disabled={isLoading}
-            width="311px"
-          />
-        </Stack>
-
-        <Stack spacing={4} mt={20} align="end" justify="end">
-          <p className="forgotPasswordText">Forgot Password?</p>
-          <Button
-            mt={4}
-            className="bg-primary text-white hover:bg-primary_hover"
-            rightIcon={<FaChevronRight />}
-            onClick={signIn}
-          >
-            Login
-          </Button>
-        </Stack>
+          <Stack spacing={4} mt={6} align="center" justify="center">
+            <p className="forgotPasswordText">Forgot Password?</p>
+            <Button
+              mt={4}
+              className="bg-primary text-white hover:bg-primary_hover"
+              rightIcon={<FaChevronRight />}
+              onClick={signIn}
+              width="80%"  // Full width button on mobile
+            >
+              Login
+            </Button>
+          </Stack>
+        </Box>
       </Box>
     </Stack>
   );

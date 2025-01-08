@@ -24,18 +24,6 @@ const Home = () => {
   const [userDataError, setUserDataError] = useState(false);
   const [challengesError, setChallengesError] = useState(false);
 
-  const predefinedEmail = "jorge+1@peerpressur.com"; // Replace with the email you want to use
-  const predefinedPassword = "@1328Belvidere"; // Replace with the password you want to use
-
-  const signInUser = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, predefinedEmail, predefinedPassword);
-      console.log("User signed in successfully.");
-    } catch (error) {
-      console.error("Error signing in:", error.message);
-    }
-  };
-
   useEffect(() => {
     if (!userState) {
       signInUser();
